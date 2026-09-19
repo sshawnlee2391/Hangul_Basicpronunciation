@@ -205,6 +205,8 @@
             <div id="vowel-stt-status" class="mt-4 text-xs sm:text-sm font-semibold text-slate-500">
               마이크를 탭하여 말하기 시작 (Tap to Speak)
             </div>
+            <!-- 실시간 인식 텍스트 표시 영역 추가 -->
+            <div id="vowel-live-text" class="mt-2 text-xl font-black text-brand-600 min-h-[2rem]"></div>
           </div>
 
           <div id="vowel-result-card" class="bg-slate-50 rounded-2xl p-4 border border-slate-200">
@@ -421,6 +423,8 @@
             <div id="consonant-stt-status" class="mt-4 text-xs sm:text-sm font-semibold text-slate-500">
               마이크를 탭하여 자음 발음하기
             </div>
+            <!-- 실시간 인식 텍스트 표시 영역 추가 -->
+            <div id="consonant-live-text" class="mt-2 text-xl font-black text-blue-600 min-h-[2rem]"></div>
           </div>
 
           <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200">
@@ -1135,8 +1139,8 @@
       if (!SpeechRecognition) return null;
       const rec = new SpeechRecognition();
       rec.lang = 'ko-KR';
-      rec.continuous = false;
-      rec.interimResults = false;
+      rec.continuous = true; // 인식률 향상: 도중에 끊기지 않고 계속 듣도록 설정
+      rec.interimResults = true; // 실시간(중간) 인식 결과를 바로바로 받도록 설정
       return rec;
     }
 
@@ -1147,86 +1151,133 @@
         return;
       }
 
+      let isMatched = false; // 정답을 맞췄는지 체크하는 플래그
+
       if (type === 'vowel') {
         const expected = VOWELS_DATA[currentVowelIndex].sample;
         const expectedChar = VOWELS_DATA[currentVowelIndex].char;
         const ring = document.getElementById("vowel-mic-ring");
         const status = document.getElementById("vowel-stt-status");
+        const liveText = document.getElementById("vowel-live-text");
         const recText = document.getElementById("vowel-recognized-text");
         const scoreBadge = document.getElementById("vowel-score-badge");
         const feedback = document.getElementById("vowel-feedback-text");
 
         ring.classList.remove("hidden");
-        status.innerText = "🎤 듣고 있습니다... 큰 소리로 말씀하세요!";
+        status.innerText = "🎤 듣고 있습니다... 여러 번 편하게 말씀해보세요!";
         status.className = "mt-4 text-xs sm:text-sm font-bold text-brand-600 animate-pulse";
+        liveText.innerText = "";
+        scoreBadge.innerText = "듣는 중...";
+        scoreBadge.className = "text-xs px-2.5 py-1 rounded-full font-bold bg-slate-200 text-slate-600";
 
         rec.onresult = (e) => {
-          ring.classList.add("hidden");
-          const transcript = e.results[0][0].transcript.trim().replace(/\s+/g, '');
-          recText.innerText = `"${transcript}"`;
-
-          const isMatch = transcript.includes(expected) || transcript.includes(expectedChar);
-          if (isMatch) {
+          let interimTranscript = '';
+          let finalTranscript = '';
+          for (let i = e.resultIndex; i < e.results.length; ++i) {
+            if (e.results[i].isFinal) finalTranscript += e.results[i][0].transcript;
+            else interimTranscript += e.results[i][0].transcript;
+          }
+          
+          const currentText = (finalTranscript + interimTranscript).trim();
+          liveText.innerText = currentText; // 실시간 텍스트 표시
+          const cleanText = currentText.replace(/\s+/g, '');
+          
+          // 사용자가 말하는 도중에 정답이 포함되어 있다면 즉시 통과 처리
+          if (!isMatched && (cleanText.includes(expected) || cleanText.includes(expectedChar))) {
+            isMatched = true;
+            rec.stop(); // 즉시 마이크 종료
+            ring.classList.add("hidden");
+            recText.innerText = `"${currentText}"`;
             scoreBadge.innerText = "정확한 발음! 100점 🌟";
             scoreBadge.className = "text-xs px-2.5 py-1 rounded-full font-bold bg-emerald-100 text-emerald-700";
             feedback.innerHTML = `<span class="text-emerald-600 font-semibold">참 잘했어요!</span> 모음 '${expectedChar}'의 발음을 완벽하게 소리내었습니다.`;
             showToast("완벽한 발음입니다! 대단해요 👏", "🎉");
-          } else {
-            scoreBadge.innerText = "다시 시도 (Try Again)";
-            scoreBadge.className = "text-xs px-2.5 py-1 rounded-full font-bold bg-amber-100 text-amber-700";
-            feedback.innerHTML = `인식된 소리: <span class="font-bold text-slate-700">'${transcript}'</span>. 3번 듣기를 다시 듣고 천천히 발음해보세요!`;
+            status.innerText = "마이크를 탭하여 다시 측정";
+            status.className = "mt-4 text-xs sm:text-sm font-semibold text-slate-500";
           }
-          status.innerText = "마이크를 탭하여 다시 측정";
-          status.className = "mt-4 text-xs sm:text-sm font-semibold text-slate-500";
         };
 
         rec.onerror = () => {
+          if(isMatched) return;
           ring.classList.add("hidden");
           status.innerText = "음성이 감지되지 않았습니다. 다시 탭하세요.";
           status.className = "mt-4 text-xs sm:text-sm font-semibold text-slate-400";
         };
-        rec.onend = () => ring.classList.add("hidden");
+        
+        rec.onend = () => {
+          ring.classList.add("hidden");
+          // 마이크가 꺼졌는데 아직 통과를 못했다면 실패 처리
+          if (!isMatched && liveText.innerText.trim() !== "") {
+            recText.innerText = `"${liveText.innerText}"`;
+            scoreBadge.innerText = "다시 시도 (Try Again)";
+            scoreBadge.className = "text-xs px-2.5 py-1 rounded-full font-bold bg-amber-100 text-amber-700";
+            feedback.innerHTML = `인식된 소리: <span class="font-bold text-slate-700">'${liveText.innerText}'</span>. 3번 듣기를 다시 듣고 천천히 발음해보세요!`;
+            status.innerText = "마이크를 탭하여 다시 측정";
+            status.className = "mt-4 text-xs sm:text-sm font-semibold text-slate-500";
+          }
+        };
         rec.start();
 
       } else if (type === 'consonant') {
         const cur = CONSONANTS_DATA[currentConsonantIndex];
         const ring = document.getElementById("consonant-mic-ring");
         const status = document.getElementById("consonant-stt-status");
+        const liveText = document.getElementById("consonant-live-text");
         const recText = document.getElementById("consonant-recognized-text");
         const scoreBadge = document.getElementById("consonant-score-badge");
         const feedback = document.getElementById("consonant-feedback-text");
 
         ring.classList.remove("hidden");
-        status.innerText = "🎤 듣고 있습니다... 자음 이름을 말씀하세요!";
+        status.innerText = "🎤 듣고 있습니다... 자음 이름을 여러 번 말씀해보세요!";
         status.className = "mt-4 text-xs sm:text-sm font-bold text-blue-600 animate-pulse";
+        liveText.innerText = "";
+        scoreBadge.innerText = "듣는 중...";
+        scoreBadge.className = "text-xs px-2.5 py-1 rounded-full font-bold bg-slate-200 text-slate-600";
 
         rec.onresult = (e) => {
-          ring.classList.add("hidden");
-          const transcript = e.results[0][0].transcript.trim().replace(/\s+/g, '');
-          recText.innerText = `"${transcript}"`;
+          let interimTranscript = '';
+          let finalTranscript = '';
+          for (let i = e.resultIndex; i < e.results.length; ++i) {
+            if (e.results[i].isFinal) finalTranscript += e.results[i][0].transcript;
+            else interimTranscript += e.results[i][0].transcript;
+          }
+          
+          const currentText = (finalTranscript + interimTranscript).trim();
+          liveText.innerText = currentText;
+          const cleanText = currentText.replace(/\s+/g, '');
 
-          // Match by consonant name (e.g. "기역") or phoneme
-          const isMatch = transcript.includes(cur.name) || transcript.includes(cur.char);
-          if (isMatch) {
+          if (!isMatched && (cleanText.includes(cur.name) || cleanText.includes(cur.char))) {
+            isMatched = true;
+            rec.stop();
+            ring.classList.add("hidden");
+            recText.innerText = `"${currentText}"`;
             scoreBadge.innerText = "자음 발음 통과! 🌟";
             scoreBadge.className = "text-xs px-2.5 py-1 rounded-full font-bold bg-emerald-100 text-emerald-700";
             feedback.innerHTML = `<span class="text-emerald-600 font-semibold">정확합니다!</span> 자음 '${cur.name}'(${cur.char})을 올바르게 발음하셨습니다.`;
             showToast(`멋져요! '${cur.name}' 발음 성공`, "🎉");
-          } else {
-            scoreBadge.innerText = "다시 시도 (Retry)";
-            scoreBadge.className = "text-xs px-2.5 py-1 rounded-full font-bold bg-amber-100 text-amber-700";
-            feedback.innerHTML = `인식된 소리: <span class="font-bold text-slate-700">'${transcript}'</span>. '${cur.name}'을 다시 연습해보세요.`;
+            status.innerText = "마이크를 탭하여 다시 측정";
+            status.className = "mt-4 text-xs sm:text-sm font-semibold text-slate-500";
           }
-          status.innerText = "마이크를 탭하여 다시 측정";
-          status.className = "mt-4 text-xs sm:text-sm font-semibold text-slate-500";
         };
 
         rec.onerror = () => {
+          if(isMatched) return;
           ring.classList.add("hidden");
           status.innerText = "음성이 감지되지 않았습니다. 다시 시도하세요.";
           status.className = "mt-4 text-xs sm:text-sm font-semibold text-slate-400";
         };
-        rec.onend = () => ring.classList.add("hidden");
+        
+        rec.onend = () => {
+          ring.classList.add("hidden");
+          if (!isMatched && liveText.innerText.trim() !== "") {
+            recText.innerText = `"${liveText.innerText}"`;
+            scoreBadge.innerText = "다시 시도 (Retry)";
+            scoreBadge.className = "text-xs px-2.5 py-1 rounded-full font-bold bg-amber-100 text-amber-700";
+            feedback.innerHTML = `인식된 소리: <span class="font-bold text-slate-700">'${liveText.innerText}'</span>. '${cur.name}'을 다시 연습해보세요.`;
+            status.innerText = "마이크를 탭하여 다시 측정";
+            status.className = "mt-4 text-xs sm:text-sm font-semibold text-slate-500";
+          }
+        };
         rec.start();
       }
     }
@@ -1261,30 +1312,52 @@
       const recLabel = document.getElementById(`${prefix}-stt-recognized`);
       const feedback = document.getElementById(`${prefix}-stt-feedback`);
 
+      let isMatched = false;
+
       scoreBadge.innerText = "듣는 중... 🎙️";
       scoreBadge.className = "text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 animate-pulse";
       recLabel.innerText = "귀 기울여 듣는 중...";
+      recLabel.className = "font-black text-blue-600 block text-sm sm:text-base";
 
       rec.onresult = (e) => {
-        const transcript = e.results[0][0].transcript.trim().replace(/\s+/g, '');
-        recLabel.innerText = `인식 결과: "${transcript}"`;
+        let interim = '';
+        let final = '';
+        for (let i = e.resultIndex; i < e.results.length; ++i) {
+          if (e.results[i].isFinal) final += e.results[i][0].transcript;
+          else interim += e.results[i][0].transcript;
+        }
+        
+        const currentText = (final + interim).trim();
+        recLabel.innerText = currentText ? `"${currentText}"` : "귀 기울여 듣는 중...";
 
-        if (transcript.includes(word) || word.includes(transcript)) {
+        const cleanText = currentText.replace(/\s+/g, '');
+
+        if (!isMatched && cleanText.includes(word)) {
+          isMatched = true;
+          rec.stop();
           scoreBadge.innerText = "발음 통과! (Passed)";
           scoreBadge.className = "text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700";
+          recLabel.className = "font-bold text-slate-900 block";
           feedback.innerText = `정확합니다! [${word}] 단어를 훌륭하게 소리내어 읽었습니다.`;
           showToast(`훌륭해요! "${word}" 발음 통과`, "✨");
-        } else {
-          scoreBadge.innerText = "다시 시도 (Retry)";
-          scoreBadge.className = "text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700";
-          feedback.innerText = `소리가 조금 달라요. '단어 듣기' 버튼을 눌러 소리를 다시 확인해보세요.`;
         }
       };
 
       rec.onerror = () => {
+        if(isMatched) return;
         scoreBadge.innerText = "인식 실패";
         scoreBadge.className = "text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-500";
         recLabel.innerText = "음성이 인식되지 않았습니다. 다시 탭하세요.";
+        recLabel.className = "font-bold text-slate-900 block";
+      };
+      
+      rec.onend = () => {
+        if (!isMatched) {
+          scoreBadge.innerText = "다시 시도 (Retry)";
+          scoreBadge.className = "text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700";
+          recLabel.className = "font-bold text-slate-900 block";
+          feedback.innerText = `소리가 조금 달라요. '단어 듣기' 버튼을 눌러 소리를 다시 확인해보세요.`;
+        }
       };
 
       rec.start();
