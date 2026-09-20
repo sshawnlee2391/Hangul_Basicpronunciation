@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hangul Master | 한글 배움터</title>
+  <title>Hangul Master | Learn Korean Fast</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'Noto Sans KR', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
             hangul: ['Gowun Dodum', 'Noto Sans KR', 'sans-serif'],
           },
           colors: {
@@ -26,7 +26,7 @@
   </script>
 
   <style>
-    body { font-family: 'Inter', 'Noto Sans KR', sans-serif; background-color: #f8fafc; touch-action: manipulation; }
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; touch-action: manipulation; }
     .hangul-font { font-family: 'Gowun Dodum', 'Noto Sans KR', sans-serif; }
     @keyframes pulse-ring {
       0% { transform: scale(0.95); opacity: 0.8; }
@@ -54,40 +54,40 @@
         </div>
         <div>
           <h1 class="text-lg font-bold leading-tight flex items-center gap-2">
-            Hangul Master <span class="text-xs bg-brand-50 text-brand-600 px-2 py-0.5 rounded-full border border-brand-200 font-medium">한글 배움터</span>
+            Hangul Master <span class="text-xs bg-brand-50 text-brand-600 px-2 py-0.5 rounded-full border border-brand-200 font-medium">Learning Center</span>
           </h1>
           <p class="text-xs text-slate-500">Listen 3x • Speak & Test • Trace & Write</p>
         </div>
       </div>
 
       <div class="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl overflow-x-auto max-w-full no-scrollbar">
-        <button id="nav-btn-vowels" onclick="switchMainTab('vowels')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all bg-white text-brand-600 shadow-sm whitespace-nowrap">모음</button>
-        <button id="nav-btn-vowel-words" onclick="switchMainTab('vowel-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">모음 단어</button>
-        <button id="nav-btn-consonants" onclick="switchMainTab('consonants')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">자음</button>
-        <button id="nav-btn-consonant-g-words" onclick="switchMainTab('consonant-g-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">ㄱ 단어</button>
-        <button id="nav-btn-consonant-n-words" onclick="switchMainTab('consonant-n-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">ㄴ 단어</button>
-        <button id="nav-btn-consonant-d-words" onclick="switchMainTab('consonant-d-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">ㄷ 단어</button>
-        <button id="nav-btn-consonant-r-words" onclick="switchMainTab('consonant-r-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">ㄹ 단어</button>
+        <button id="nav-btn-vowels" onclick="switchMainTab('vowels')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all bg-white text-brand-600 shadow-sm whitespace-nowrap">Vowels</button>
+        <button id="nav-btn-vowel-words" onclick="switchMainTab('vowel-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">Vowel Words</button>
+        <button id="nav-btn-consonants" onclick="switchMainTab('consonants')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">Consonants</button>
+        <button id="nav-btn-consonant-g-words" onclick="switchMainTab('consonant-g-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㄱ' Words</button>
+        <button id="nav-btn-consonant-n-words" onclick="switchMainTab('consonant-n-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㄴ' Words</button>
+        <button id="nav-btn-consonant-d-words" onclick="switchMainTab('consonant-d-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㄷ' Words</button>
+        <button id="nav-btn-consonant-r-words" onclick="switchMainTab('consonant-r-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㄹ' Words</button>
       </div>
     </div>
   </header>
 
   <main class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
     <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-slate-900 text-white text-sm px-4 py-3 rounded-xl shadow-xl flex items-center gap-3">
-      <span id="toast-icon">✨</span><span id="toast-msg">알림 메시지</span>
+      <span id="toast-icon">✨</span><span id="toast-msg">Notification</span>
     </div>
 
-    <!-- SECTION 1: VOWELS -->
+    <!-- Section: Basic Vowels -->
     <section id="section-vowels" class="space-y-6">
       <div class="bg-gradient-to-r from-red-500/10 via-rose-500/10 to-orange-500/10 border border-brand-200/60 p-5 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-600 bg-white px-2.5 py-1 rounded-full border border-brand-200">Step 1 • Basic Vowels</span>
-          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">한국어 기본 모음</h2>
-          <p class="text-sm text-slate-600 mt-0.5">원하시는 모음을 선택하고 <strong>3번 연속</strong> 청취 후, 발음을 테스트하세요.</p>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Basic Korean Vowels</h2>
+          <p class="text-sm text-slate-600 mt-0.5">Select a vowel, listen <strong>3 times</strong>, and test your pronunciation.</p>
         </div>
-        <button onclick="playCurrentVowel3Times()" class="flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-4 py-2.5 rounded-xl font-semibold shadow-md shadow-brand-500/20 text-sm">
+        <button onclick="playCurrentVowel3Times()" class="flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-4 py-2.5 rounded-xl font-semibold shadow-md shadow-brand-500/20 text-sm transition-all active:scale-95">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-          모음 3번 듣기 (Play 3x)
+          Listen 3x
         </button>
       </div>
 
@@ -102,7 +102,7 @@
           </div>
           <div class="space-y-3 bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
             <div class="flex items-center justify-between text-xs font-semibold text-slate-600">
-              <span>3회 연속 청취 상태</span><span id="vowel-repeat-badge" class="text-brand-600 font-bold">준비 (Ready)</span>
+              <span>3x Listening Status</span><span id="vowel-repeat-badge" class="text-brand-600 font-bold">Ready</span>
             </div>
             <div class="grid grid-cols-3 gap-2">
               <div id="vowel-dot-1" class="h-2.5 rounded-full bg-slate-200 transition-all duration-300"></div>
@@ -115,36 +115,36 @@
         <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between">
-              <h3 class="text-lg font-bold text-slate-900">발음 평가 (Pronunciation Test)</h3>
+              <h3 class="text-lg font-bold text-slate-900">Pronunciation Test</h3>
             </div>
-            <p class="text-sm text-slate-500 mt-1">마이크 버튼을 누르고 <span id="vowel-target-prompt" class="font-bold text-brand-600">"아"</span>를 읽어보세요!</p>
+            <p class="text-sm text-slate-500 mt-1">Click the mic and say <span id="vowel-target-prompt" class="font-bold text-brand-600">"아"</span>!</p>
           </div>
 
           <div class="my-8 flex flex-col items-center justify-center">
             <div class="relative">
               <div id="vowel-mic-ring" class="hidden absolute -inset-3 rounded-full bg-brand-500/20 mic-pulse"></div>
-              <button id="vowel-mic-btn" onclick="startPronunciationCheck('vowel')" class="relative w-20 h-20 rounded-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center shadow-lg active:scale-95">
+              <button id="vowel-mic-btn" onclick="startPronunciationCheck('vowel')" class="relative w-20 h-20 rounded-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center shadow-lg active:scale-95 transition-transform">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
               </button>
             </div>
-            <div id="vowel-stt-status" class="mt-4 text-sm font-semibold text-slate-500">마이크를 탭하여 말하기 시작</div>
-            <div id="vowel-live-text" class="mt-2 text-2xl font-black text-brand-600 min-h-[2.5rem]"></div>
+            <div id="vowel-stt-status" class="mt-4 text-sm font-semibold text-slate-500">Tap the mic to start speaking</div>
+            <div id="vowel-live-text" class="mt-2 text-3xl font-black text-brand-600 min-h-[2.5rem] tracking-widest text-center"></div>
           </div>
 
           <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 text-center">
-            <div id="vowel-score-badge" class="inline-block text-xs px-2.5 py-1 rounded-full font-bold bg-slate-200 text-slate-600 mb-2">대기 중</div>
-            <div id="vowel-feedback-text" class="text-xs text-slate-500">버튼을 누르고 발음하면 실시간으로 정확도를 판정합니다.</div>
+            <div id="vowel-score-badge" class="inline-block text-xs px-2.5 py-1 rounded-full font-bold bg-slate-200 text-slate-600 mb-2">Waiting...</div>
+            <div id="vowel-feedback-text" class="text-xs text-slate-500">Press the button and speak to get real-time feedback.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: VOWEL WORDS -->
+    <!-- Section: Vowel Words -->
     <section id="section-vowel-words" class="hidden space-y-6">
       <div class="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-rose-500/10 border border-amber-200/80 p-5 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase text-amber-700 bg-white px-2.5 py-1 rounded-full border border-amber-200">Step 2 • Basic Vowel Words</span>
-          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">기본 모음 단어 9개 마스터</h2>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Master 9 Basic Vowel Words</h2>
         </div>
       </div>
 
@@ -154,25 +154,24 @@
         <div class="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
           <div>
             <div class="flex items-center justify-between">
-              <span id="vw-idx-badge" class="text-xs bg-rose-50 text-rose-600 font-bold px-2.5 py-1 rounded-lg border border-rose-200">단어 1 / 9</span>
+              <span id="vw-idx-badge" class="text-xs bg-rose-50 text-rose-600 font-bold px-2.5 py-1 rounded-lg border border-rose-200">Word 1 / 9</span>
             </div>
             <div class="text-center my-6">
               <div id="vw-hangul" class="hangul-font text-6xl font-black text-slate-900 tracking-tight">오</div>
               <div id="vw-roman" class="text-lg font-semibold text-slate-500 mt-1">[o]</div>
               <div id="vw-english" class="text-xl font-extrabold text-brand-600 mt-2">Five (5)</div>
-              <div id="vw-example" class="text-xs text-slate-500 mt-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">"숫자 오"</div>
+              <div id="vw-example" class="text-xs text-slate-500 mt-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">"Number five"</div>
             </div>
             <div class="flex gap-2">
-              <button onclick="speakCurrentWord('vowel')" class="flex-1 py-3 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl text-sm transition-all active:scale-[0.98]">단어 듣기 (Listen)</button>
-              <button onclick="speakCurrentWordSlow('vowel')" class="px-3.5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition-all">🐢 천천히</button>
+              <button onclick="speakCurrentWord('vowel')" class="flex-1 py-3 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl text-sm transition-all active:scale-95">Listen</button>
+              <button onclick="speakCurrentWordSlow('vowel')" class="px-3.5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition-all">🐢 Slow</button>
             </div>
           </div>
 
-          <!-- 실시간 텍스트 피드백 UI 적용 -->
           <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col items-center text-center">
             <div class="flex items-center justify-between w-full mb-4">
-              <span class="text-xs font-bold text-slate-700">소리내어 읽기 (Speak it)</span>
-              <span id="vw-stt-score" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">평가 대기</span>
+              <span class="text-xs font-bold text-slate-700">Speak it out loud</span>
+              <span id="vw-stt-score" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">Pending</span>
             </div>
             <div class="relative">
               <div id="vw-mic-ring" class="hidden absolute -inset-3 rounded-full bg-brand-500/20 mic-pulse"></div>
@@ -180,18 +179,18 @@
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
               </button>
             </div>
-            <div id="vw-stt-status" class="mt-3 text-xs font-semibold text-slate-500">마이크를 탭하여 단어 발음하기</div>
-            <div id="vw-stt-recognized" class="mt-2 text-xl font-black text-brand-600 min-h-[1.75rem]"></div>
-            <div id="vw-stt-feedback" class="mt-2 text-xs text-slate-500">음성을 듣고 일치 여부를 평가합니다.</div>
+            <div id="vw-stt-status" class="mt-3 text-xs font-semibold text-slate-500">Tap the mic to speak</div>
+            <div id="vw-stt-recognized" class="mt-2 text-2xl font-black text-brand-600 min-h-[2rem] tracking-wider"></div>
+            <div id="vw-stt-feedback" class="mt-2 text-xs text-slate-500">Your voice will be evaluated in real-time.</div>
           </div>
         </div>
 
         <div class="lg:col-span-7 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
           <div class="flex items-center justify-between">
-            <h3 class="font-bold text-slate-900 flex items-center gap-2">✍️ 손으로 따라 쓰기</h3>
+            <h3 class="font-bold text-slate-900 flex items-center gap-2">✍️ Trace & Write</h3>
             <div class="flex gap-2">
-              <button onclick="toggleTracingGuide('vowel')" class="text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50">가이드 전환</button>
-              <button onclick="clearCanvas('vowel')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100">지우기</button>
+              <button onclick="toggleTracingGuide('vowel')" class="text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50">Toggle Guide</button>
+              <button onclick="clearCanvas('vowel')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100">Clear</button>
             </div>
           </div>
           <div class="relative w-full h-72 sm:h-80 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden canvas-grid">
@@ -200,27 +199,27 @@
           </div>
           <div class="flex items-center justify-between gap-3 pt-2">
             <div class="flex items-center gap-2">
-              <button onclick="changePenColor('vowel', '#1e293b')" class="w-6 h-6 rounded-full bg-slate-900"></button>
-              <button onclick="changePenColor('vowel', '#e14d43')" class="w-6 h-6 rounded-full bg-brand-500"></button>
+              <button onclick="changePenColor('vowel', '#1e293b')" class="w-6 h-6 rounded-full bg-slate-900 border-2 border-transparent hover:border-slate-300"></button>
+              <button onclick="changePenColor('vowel', '#e14d43')" class="w-6 h-6 rounded-full bg-brand-500 border-2 border-transparent hover:border-slate-300"></button>
             </div>
             <div class="flex gap-2">
-              <button onclick="prevWord('vowel')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg border border-slate-200 hover:bg-slate-50">◀ 이전</button>
-              <button onclick="nextWord('vowel')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-slate-900 text-white hover:bg-slate-800">다음 ▶</button>
+              <button onclick="prevWord('vowel')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg border border-slate-200 hover:bg-slate-50">◀ Prev</button>
+              <button onclick="nextWord('vowel')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-slate-900 text-white hover:bg-slate-800">Next ▶</button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3: CONSONANTS -->
+    <!-- Section: Basic Consonants -->
     <section id="section-consonants" class="hidden space-y-6">
       <div class="bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-teal-500/10 border border-blue-200/80 p-5 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase text-blue-700 bg-white px-2.5 py-1 rounded-full border border-blue-200">Step 3 • Basic Consonants</span>
-          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">한국어 기본 자음 14자</h2>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">14 Basic Korean Consonants</h2>
         </div>
-        <button onclick="playCurrentConsonant3Times()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl font-semibold text-sm">
-          자음 3번 듣기 (Play 3x)
+        <button onclick="playCurrentConsonant3Times()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl font-semibold text-sm transition-all active:scale-95">
+          Listen 3x
         </button>
       </div>
 
@@ -231,89 +230,88 @@
           <div class="text-center my-auto py-4">
             <div id="consonant-big-char" class="hangul-font text-8xl font-black text-blue-600">ㄱ</div>
             <div id="consonant-name" class="text-2xl font-extrabold text-slate-800 mt-2">기역 [Gi-yeok]</div>
-            <div id="consonant-sound" class="text-sm font-semibold text-slate-500 mt-1">음가: [g / k]</div>
+            <div id="consonant-sound" class="text-sm font-semibold text-slate-500 mt-1">Sound: [g / k]</div>
             <p id="consonant-desc" class="text-xs text-slate-500 mt-3">'g' sound as in 'game'.</p>
           </div>
           <div class="space-y-3 bg-blue-50/60 p-4 rounded-2xl border border-blue-100 mt-4">
             <div class="flex items-center justify-between text-xs font-semibold text-slate-700">
-              <span>자음 3회 청취 진행</span><span id="consonant-repeat-badge" class="text-blue-600 font-bold">준비 (Ready)</span>
+              <span>3x Listening Status</span><span id="consonant-repeat-badge" class="text-blue-600 font-bold">Ready</span>
             </div>
             <div class="grid grid-cols-3 gap-2">
-              <div id="consonant-dot-1" class="h-2.5 rounded-full bg-slate-200"></div>
-              <div id="consonant-dot-2" class="h-2.5 rounded-full bg-slate-200"></div>
-              <div id="consonant-dot-3" class="h-2.5 rounded-full bg-slate-200"></div>
+              <div id="consonant-dot-1" class="h-2.5 rounded-full bg-slate-200 transition-all"></div>
+              <div id="consonant-dot-2" class="h-2.5 rounded-full bg-slate-200 transition-all"></div>
+              <div id="consonant-dot-3" class="h-2.5 rounded-full bg-slate-200 transition-all"></div>
             </div>
           </div>
         </div>
 
         <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
           <div>
-            <h3 class="text-lg font-bold text-slate-900">자음 발음 테스트 (Voice Check)</h3>
-            <p class="text-sm text-slate-500 mt-1">마이크를 누르고 자음 이름 <span id="consonant-target-prompt" class="font-bold text-blue-600">"기역"</span>을 말씀해보세요!</p>
+            <h3 class="text-lg font-bold text-slate-900">Pronunciation Check</h3>
+            <p class="text-sm text-slate-500 mt-1">Tap the mic and say the consonant name <span id="consonant-target-prompt" class="font-bold text-blue-600">"기역"</span>!</p>
           </div>
           <div class="my-8 flex flex-col items-center justify-center">
             <div class="relative">
               <div id="consonant-mic-ring" class="hidden absolute -inset-3 rounded-full bg-blue-500/20 mic-pulse"></div>
-              <button id="consonant-mic-btn" onclick="startPronunciationCheck('consonant')" class="relative w-20 h-20 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-lg active:scale-95">
+              <button id="consonant-mic-btn" onclick="startPronunciationCheck('consonant')" class="relative w-20 h-20 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-lg active:scale-95 transition-transform">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
               </button>
             </div>
-            <div id="consonant-stt-status" class="mt-4 text-sm font-semibold text-slate-500">마이크를 탭하여 자음 발음하기</div>
-            <div id="consonant-live-text" class="mt-2 text-2xl font-black text-blue-600 min-h-[2.5rem]"></div>
+            <div id="consonant-stt-status" class="mt-4 text-sm font-semibold text-slate-500">Tap the mic to start speaking</div>
+            <div id="consonant-live-text" class="mt-2 text-3xl font-black text-blue-600 min-h-[2.5rem] tracking-widest text-center"></div>
           </div>
           <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 text-center">
-            <div id="consonant-score-badge" class="inline-block text-xs px-2.5 py-1 rounded-full font-bold bg-slate-200 text-slate-600 mb-2">대기 중</div>
-            <div id="consonant-feedback-text" class="text-xs text-slate-500">자음의 이름을 소리내어 맞혀보세요.</div>
+            <div id="consonant-score-badge" class="inline-block text-xs px-2.5 py-1 rounded-full font-bold bg-slate-200 text-slate-600 mb-2">Waiting...</div>
+            <div id="consonant-feedback-text" class="text-xs text-slate-500">Say the name of the consonant out loud.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: CONSONANT 'ㄱ' WORDS -->
+    <!-- Section: Consonant ㄱ Words -->
     <section id="section-consonant-g-words" class="hidden space-y-6">
       <div class="bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-cyan-500/10 border border-emerald-200/80 p-5 rounded-2xl flex items-center justify-between">
         <div>
           <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase text-emerald-700 bg-white px-2.5 py-1 rounded-full border border-emerald-200">Step 4 • 'ㄱ' Words</span>
-          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">자음 'ㄱ' 단어 9개 완벽 마스터</h2>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Master 9 Consonant 'ㄱ' Words</h2>
         </div>
       </div>
       <div class="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-2" id="g-words-list-ribbon"></div>
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div class="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
           <div>
-            <span id="gw-idx-badge" class="text-xs bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded-lg border border-emerald-200">단어 1 / 9</span>
+            <span id="gw-idx-badge" class="text-xs bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded-lg border border-emerald-200">Word 1 / 9</span>
             <div class="text-center my-6">
               <div id="gw-hangul" class="hangul-font text-6xl font-black text-slate-900 tracking-tight">구</div>
               <div id="gw-roman" class="text-lg font-semibold text-slate-500 mt-1">[gu]</div>
               <div id="gw-english" class="text-xl font-extrabold text-emerald-600 mt-2">Nine (9)</div>
-              <div id="gw-example" class="text-xs text-slate-500 mt-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">"숫자 구"</div>
+              <div id="gw-example" class="text-xs text-slate-500 mt-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">"Number nine"</div>
             </div>
             <div class="flex gap-2">
-              <button onclick="speakCurrentWord('consonant-g')" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm transition-all active:scale-[0.98]">단어 듣기</button>
-              <button onclick="speakCurrentWordSlow('consonant-g')" class="px-3.5 py-3 bg-slate-100 text-slate-700 font-semibold rounded-xl text-xs">🐢 천천히</button>
+              <button onclick="speakCurrentWord('consonant-g')" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm transition-all active:scale-95">Listen</button>
+              <button onclick="speakCurrentWordSlow('consonant-g')" class="px-3.5 py-3 bg-slate-100 text-slate-700 font-semibold rounded-xl text-xs hover:bg-slate-200">🐢 Slow</button>
             </div>
           </div>
-          <!-- 실시간 텍스트 피드백 UI -->
           <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col items-center text-center">
             <div class="flex items-center justify-between w-full mb-4">
-              <span class="text-xs font-bold text-slate-700">소리내어 읽기</span>
-              <span id="gw-stt-score" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">평가 대기</span>
+              <span class="text-xs font-bold text-slate-700">Speak it out loud</span>
+              <span id="gw-stt-score" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">Pending</span>
             </div>
             <div class="relative">
               <div id="gw-mic-ring" class="hidden absolute -inset-3 rounded-full bg-emerald-500/20 mic-pulse"></div>
-              <button id="gw-mic-btn" onclick="startWordPronunciationCheck('consonant-g')" class="relative w-16 h-16 rounded-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center shadow active:scale-90">
+              <button id="gw-mic-btn" onclick="startWordPronunciationCheck('consonant-g')" class="relative w-16 h-16 rounded-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center shadow transition-all active:scale-90">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
               </button>
             </div>
-            <div id="gw-stt-status" class="mt-3 text-xs font-semibold text-slate-500">마이크를 탭하여 단어 발음하기</div>
-            <div id="gw-stt-recognized" class="mt-2 text-xl font-black text-emerald-600 min-h-[1.75rem]"></div>
-            <div id="gw-stt-feedback" class="mt-2 text-xs text-slate-500">음성을 듣고 일치 여부를 평가합니다.</div>
+            <div id="gw-stt-status" class="mt-3 text-xs font-semibold text-slate-500">Tap the mic to speak</div>
+            <div id="gw-stt-recognized" class="mt-2 text-2xl font-black text-emerald-600 min-h-[2rem] tracking-wider"></div>
+            <div id="gw-stt-feedback" class="mt-2 text-xs text-slate-500">Your voice will be evaluated in real-time.</div>
           </div>
         </div>
         <div class="lg:col-span-7 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
           <div class="flex items-center justify-between">
-            <h3 class="font-bold text-slate-900">✍️ 손으로 따라 쓰기</h3>
-            <button onclick="clearCanvas('consonant-g')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100">지우기</button>
+            <h3 class="font-bold text-slate-900">✍️ Trace & Write</h3>
+            <button onclick="clearCanvas('consonant-g')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100">Clear</button>
           </div>
           <div class="relative w-full h-72 sm:h-80 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden canvas-grid">
             <div id="gw-canvas-guide" class="hangul-font absolute inset-0 flex items-center justify-center text-7xl sm:text-8xl font-black text-slate-300/60 select-none pointer-events-none">구</div>
@@ -321,198 +319,198 @@
           </div>
           <div class="flex items-center justify-between pt-2">
             <div class="flex gap-2">
-              <button onclick="changePenColor('consonant-g', '#1e293b')" class="w-6 h-6 rounded-full bg-slate-900"></button>
-              <button onclick="changePenColor('consonant-g', '#059669')" class="w-6 h-6 rounded-full bg-emerald-600"></button>
+              <button onclick="changePenColor('consonant-g', '#1e293b')" class="w-6 h-6 rounded-full bg-slate-900 border-2 border-transparent hover:border-slate-300"></button>
+              <button onclick="changePenColor('consonant-g', '#059669')" class="w-6 h-6 rounded-full bg-emerald-600 border-2 border-transparent hover:border-slate-300"></button>
             </div>
             <div class="flex gap-2">
-              <button onclick="prevWord('consonant-g')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg border border-slate-200">◀ 이전</button>
-              <button onclick="nextWord('consonant-g')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-slate-900 text-white">다음 ▶</button>
+              <button onclick="prevWord('consonant-g')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg border border-slate-200 hover:bg-slate-50">◀ Prev</button>
+              <button onclick="nextWord('consonant-g')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-slate-900 text-white hover:bg-slate-800">Next ▶</button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 5: CONSONANT 'ㄴ' WORDS -->
+    <!-- Section: Consonant ㄴ Words -->
     <section id="section-consonant-n-words" class="hidden space-y-6">
       <div class="bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-pink-500/10 border border-purple-200/80 p-5 rounded-2xl flex items-center justify-between">
         <div>
           <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase text-purple-700 bg-white px-2.5 py-1 rounded-full border border-purple-200">Step 5 • 'ㄴ' Words</span>
-          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">자음 'ㄴ' 단어 7개 완벽 마스터</h2>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Master 7 Consonant 'ㄴ' Words</h2>
         </div>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2" id="n-words-list-ribbon"></div>
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div class="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
           <div>
-            <span id="nw-idx-badge" class="text-xs bg-purple-50 text-purple-700 font-bold px-2.5 py-1 rounded-lg border border-purple-200">단어 1 / 7</span>
+            <span id="nw-idx-badge" class="text-xs bg-purple-50 text-purple-700 font-bold px-2.5 py-1 rounded-lg border border-purple-200">Word 1 / 7</span>
             <div class="text-center my-6">
               <div id="nw-hangul" class="hangul-font text-6xl font-black text-slate-900 tracking-tight">나</div>
               <div id="nw-roman" class="text-lg font-semibold text-slate-500 mt-1">[na]</div>
               <div id="nw-english" class="text-xl font-extrabold text-purple-600 mt-2">I / Me</div>
             </div>
             <div class="flex gap-2">
-              <button onclick="speakCurrentWord('consonant-n')" class="flex-1 py-3 bg-purple-600 text-white font-bold rounded-xl text-sm active:scale-[0.98]">단어 듣기</button>
-              <button onclick="speakCurrentWordSlow('consonant-n')" class="px-3.5 py-3 bg-slate-100 text-slate-700 font-semibold rounded-xl text-xs">🐢 천천히</button>
+              <button onclick="speakCurrentWord('consonant-n')" class="flex-1 py-3 bg-purple-600 text-white font-bold rounded-xl text-sm transition-all active:scale-95">Listen</button>
+              <button onclick="speakCurrentWordSlow('consonant-n')" class="px-3.5 py-3 bg-slate-100 text-slate-700 font-semibold rounded-xl text-xs hover:bg-slate-200">🐢 Slow</button>
             </div>
           </div>
           <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col items-center text-center">
             <div class="flex items-center justify-between w-full mb-4">
-              <span class="text-xs font-bold text-slate-700">소리내어 읽기</span>
-              <span id="nw-stt-score" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">평가 대기</span>
+              <span class="text-xs font-bold text-slate-700">Speak it out loud</span>
+              <span id="nw-stt-score" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">Pending</span>
             </div>
             <div class="relative">
               <div id="nw-mic-ring" class="hidden absolute -inset-3 rounded-full bg-purple-500/20 mic-pulse"></div>
-              <button id="nw-mic-btn" onclick="startWordPronunciationCheck('consonant-n')" class="relative w-16 h-16 rounded-full bg-slate-900 text-white flex items-center justify-center shadow active:scale-90">
+              <button id="nw-mic-btn" onclick="startWordPronunciationCheck('consonant-n')" class="relative w-16 h-16 rounded-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center shadow transition-all active:scale-90">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
               </button>
             </div>
-            <div id="nw-stt-status" class="mt-3 text-xs font-semibold text-slate-500">마이크를 탭하여 단어 발음하기</div>
-            <div id="nw-stt-recognized" class="mt-2 text-xl font-black text-purple-600 min-h-[1.75rem]"></div>
-            <div id="nw-stt-feedback" class="mt-2 text-xs text-slate-500">음성을 듣고 일치 여부를 평가합니다.</div>
+            <div id="nw-stt-status" class="mt-3 text-xs font-semibold text-slate-500">Tap the mic to speak</div>
+            <div id="nw-stt-recognized" class="mt-2 text-2xl font-black text-purple-600 min-h-[2rem] tracking-wider"></div>
+            <div id="nw-stt-feedback" class="mt-2 text-xs text-slate-500">Your voice will be evaluated in real-time.</div>
           </div>
         </div>
         <div class="lg:col-span-7 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
           <div class="flex items-center justify-between">
-            <h3 class="font-bold text-slate-900">✍️ 손으로 따라 쓰기</h3>
-            <button onclick="clearCanvas('consonant-n')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-rose-50 text-rose-600">지우기</button>
+            <h3 class="font-bold text-slate-900">✍️ Trace & Write</h3>
+            <button onclick="clearCanvas('consonant-n')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100">Clear</button>
           </div>
           <div class="relative w-full h-72 sm:h-80 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden canvas-grid">
-            <div id="nw-canvas-guide" class="hangul-font absolute inset-0 flex items-center justify-center text-7xl sm:text-8xl font-black text-slate-300/60 pointer-events-none">나</div>
+            <div id="nw-canvas-guide" class="hangul-font absolute inset-0 flex items-center justify-center text-7xl sm:text-8xl font-black text-slate-300/60 pointer-events-none select-none">나</div>
             <canvas id="canvas-consonant-n" class="absolute inset-0 w-full h-full cursor-crosshair"></canvas>
           </div>
           <div class="flex items-center justify-between pt-2">
             <div class="flex gap-2">
-              <button onclick="changePenColor('consonant-n', '#1e293b')" class="w-6 h-6 rounded-full bg-slate-900"></button>
-              <button onclick="changePenColor('consonant-n', '#7c3aed')" class="w-6 h-6 rounded-full bg-purple-600"></button>
+              <button onclick="changePenColor('consonant-n', '#1e293b')" class="w-6 h-6 rounded-full bg-slate-900 border-2 border-transparent hover:border-slate-300"></button>
+              <button onclick="changePenColor('consonant-n', '#7c3aed')" class="w-6 h-6 rounded-full bg-purple-600 border-2 border-transparent hover:border-slate-300"></button>
             </div>
             <div class="flex gap-2">
-              <button onclick="prevWord('consonant-n')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg border border-slate-200">◀ 이전</button>
-              <button onclick="nextWord('consonant-n')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-slate-900 text-white">다음 ▶</button>
+              <button onclick="prevWord('consonant-n')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg border border-slate-200 hover:bg-slate-50">◀ Prev</button>
+              <button onclick="nextWord('consonant-n')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-slate-900 text-white hover:bg-slate-800">Next ▶</button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 6: CONSONANT 'ㄷ' WORDS -->
+    <!-- Section: Consonant ㄷ Words -->
     <section id="section-consonant-d-words" class="hidden space-y-6">
       <div class="bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-blue-500/10 border border-sky-200/80 p-5 rounded-2xl flex items-center justify-between">
         <div>
           <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase text-sky-700 bg-white px-2.5 py-1 rounded-full border border-sky-200">Step 6 • 'ㄷ' Words</span>
-          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">자음 'ㄷ' 단어 9개 완벽 마스터</h2>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Master 9 Consonant 'ㄷ' Words</h2>
         </div>
       </div>
       <div class="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-2" id="d-words-list-ribbon"></div>
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div class="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
           <div>
-            <span id="dw-idx-badge" class="text-xs bg-sky-50 text-sky-700 font-bold px-2.5 py-1 rounded-lg border border-sky-200">단어 1 / 9</span>
+            <span id="dw-idx-badge" class="text-xs bg-sky-50 text-sky-700 font-bold px-2.5 py-1 rounded-lg border border-sky-200">Word 1 / 9</span>
             <div class="text-center my-6">
               <div id="dw-hangul" class="hangul-font text-5xl sm:text-6xl font-black text-slate-900 tracking-tight">더디다</div>
               <div id="dw-roman" class="text-lg font-semibold text-slate-500 mt-1">[deo-di-da]</div>
               <div id="dw-english" class="text-xl font-extrabold text-sky-600 mt-2">Slow</div>
             </div>
             <div class="flex gap-2">
-              <button onclick="speakCurrentWord('consonant-d')" class="flex-1 py-3 bg-sky-600 text-white font-bold rounded-xl text-sm active:scale-[0.98]">단어 듣기</button>
-              <button onclick="speakCurrentWordSlow('consonant-d')" class="px-3.5 py-3 bg-slate-100 text-slate-700 font-semibold rounded-xl text-xs">🐢 천천히</button>
+              <button onclick="speakCurrentWord('consonant-d')" class="flex-1 py-3 bg-sky-600 text-white font-bold rounded-xl text-sm transition-all active:scale-95">Listen</button>
+              <button onclick="speakCurrentWordSlow('consonant-d')" class="px-3.5 py-3 bg-slate-100 text-slate-700 font-semibold rounded-xl text-xs hover:bg-slate-200">🐢 Slow</button>
             </div>
           </div>
           <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col items-center text-center">
             <div class="flex items-center justify-between w-full mb-4">
-              <span class="text-xs font-bold text-slate-700">소리내어 읽기</span>
-              <span id="dw-stt-score" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">평가 대기</span>
+              <span class="text-xs font-bold text-slate-700">Speak it out loud</span>
+              <span id="dw-stt-score" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">Pending</span>
             </div>
             <div class="relative">
               <div id="dw-mic-ring" class="hidden absolute -inset-3 rounded-full bg-sky-500/20 mic-pulse"></div>
-              <button id="dw-mic-btn" onclick="startWordPronunciationCheck('consonant-d')" class="relative w-16 h-16 rounded-full bg-slate-900 text-white flex items-center justify-center shadow active:scale-90">
+              <button id="dw-mic-btn" onclick="startWordPronunciationCheck('consonant-d')" class="relative w-16 h-16 rounded-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center shadow transition-all active:scale-90">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
               </button>
             </div>
-            <div id="dw-stt-status" class="mt-3 text-xs font-semibold text-slate-500">마이크를 탭하여 단어 발음하기</div>
-            <div id="dw-stt-recognized" class="mt-2 text-xl font-black text-sky-600 min-h-[1.75rem]"></div>
-            <div id="dw-stt-feedback" class="mt-2 text-xs text-slate-500">음성을 듣고 일치 여부를 평가합니다.</div>
+            <div id="dw-stt-status" class="mt-3 text-xs font-semibold text-slate-500">Tap the mic to speak</div>
+            <div id="dw-stt-recognized" class="mt-2 text-2xl font-black text-sky-600 min-h-[2rem] tracking-wider"></div>
+            <div id="dw-stt-feedback" class="mt-2 text-xs text-slate-500">Your voice will be evaluated in real-time.</div>
           </div>
         </div>
         <div class="lg:col-span-7 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
           <div class="flex items-center justify-between">
-            <h3 class="font-bold text-slate-900">✍️ 손으로 따라 쓰기</h3>
-            <button onclick="clearCanvas('consonant-d')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-rose-50 text-rose-600">지우기</button>
+            <h3 class="font-bold text-slate-900">✍️ Trace & Write</h3>
+            <button onclick="clearCanvas('consonant-d')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100">Clear</button>
           </div>
           <div class="relative w-full h-72 sm:h-80 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden canvas-grid">
-            <div id="dw-canvas-guide" class="hangul-font absolute inset-0 flex items-center justify-center text-5xl sm:text-7xl font-black text-slate-300/60 pointer-events-none">더디다</div>
+            <div id="dw-canvas-guide" class="hangul-font absolute inset-0 flex items-center justify-center text-5xl sm:text-7xl font-black text-slate-300/60 pointer-events-none select-none">더디다</div>
             <canvas id="canvas-consonant-d" class="absolute inset-0 w-full h-full cursor-crosshair"></canvas>
           </div>
           <div class="flex items-center justify-between pt-2">
             <div class="flex gap-2">
-              <button onclick="changePenColor('consonant-d', '#1e293b')" class="w-6 h-6 rounded-full bg-slate-900"></button>
-              <button onclick="changePenColor('consonant-d', '#0284c7')" class="w-6 h-6 rounded-full bg-sky-600"></button>
+              <button onclick="changePenColor('consonant-d', '#1e293b')" class="w-6 h-6 rounded-full bg-slate-900 border-2 border-transparent hover:border-slate-300"></button>
+              <button onclick="changePenColor('consonant-d', '#0284c7')" class="w-6 h-6 rounded-full bg-sky-600 border-2 border-transparent hover:border-slate-300"></button>
             </div>
             <div class="flex gap-2">
-              <button onclick="prevWord('consonant-d')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg border border-slate-200">◀ 이전</button>
-              <button onclick="nextWord('consonant-d')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-slate-900 text-white">다음 ▶</button>
+              <button onclick="prevWord('consonant-d')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg border border-slate-200 hover:bg-slate-50">◀ Prev</button>
+              <button onclick="nextWord('consonant-d')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-slate-900 text-white hover:bg-slate-800">Next ▶</button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 7: CONSONANT 'ㄹ' WORDS -->
+    <!-- Section: Consonant ㄹ Words -->
     <section id="section-consonant-r-words" class="hidden space-y-6">
       <div class="bg-gradient-to-r from-teal-500/10 via-emerald-500/10 to-green-500/10 border border-teal-200/80 p-5 rounded-2xl flex items-center justify-between">
         <div>
           <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase text-teal-700 bg-white px-2.5 py-1 rounded-full border border-teal-200">Step 7 • 'ㄹ' Words</span>
-          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">자음 'ㄹ' 단어 9개 완벽 마스터</h2>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Master 9 Consonant 'ㄹ' Words</h2>
         </div>
       </div>
       <div class="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-2" id="r-words-list-ribbon"></div>
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div class="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
           <div>
-            <span id="rw-idx-badge" class="text-xs bg-teal-50 text-teal-700 font-bold px-2.5 py-1 rounded-lg border border-teal-200">단어 1 / 9</span>
+            <span id="rw-idx-badge" class="text-xs bg-teal-50 text-teal-700 font-bold px-2.5 py-1 rounded-lg border border-teal-200">Word 1 / 9</span>
             <div class="text-center my-6">
               <div id="rw-hangul" class="hangul-font text-6xl font-black text-slate-900 tracking-tight">가로</div>
               <div id="rw-roman" class="text-lg font-semibold text-slate-500 mt-1">[ga-ro]</div>
               <div id="rw-english" class="text-xl font-extrabold text-teal-600 mt-2">Horizontal</div>
             </div>
             <div class="flex gap-2">
-              <button onclick="speakCurrentWord('consonant-r')" class="flex-1 py-3 bg-teal-600 text-white font-bold rounded-xl text-sm active:scale-[0.98]">단어 듣기</button>
-              <button onclick="speakCurrentWordSlow('consonant-r')" class="px-3.5 py-3 bg-slate-100 text-slate-700 font-semibold rounded-xl text-xs">🐢 천천히</button>
+              <button onclick="speakCurrentWord('consonant-r')" class="flex-1 py-3 bg-teal-600 text-white font-bold rounded-xl text-sm transition-all active:scale-95">Listen</button>
+              <button onclick="speakCurrentWordSlow('consonant-r')" class="px-3.5 py-3 bg-slate-100 text-slate-700 font-semibold rounded-xl text-xs hover:bg-slate-200">🐢 Slow</button>
             </div>
           </div>
           <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col items-center text-center">
             <div class="flex items-center justify-between w-full mb-4">
-              <span class="text-xs font-bold text-slate-700">소리내어 읽기</span>
-              <span id="rw-stt-score" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">평가 대기</span>
+              <span class="text-xs font-bold text-slate-700">Speak it out loud</span>
+              <span id="rw-stt-score" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">Pending</span>
             </div>
             <div class="relative">
               <div id="rw-mic-ring" class="hidden absolute -inset-3 rounded-full bg-teal-500/20 mic-pulse"></div>
-              <button id="rw-mic-btn" onclick="startWordPronunciationCheck('consonant-r')" class="relative w-16 h-16 rounded-full bg-slate-900 text-white flex items-center justify-center shadow active:scale-90">
+              <button id="rw-mic-btn" onclick="startWordPronunciationCheck('consonant-r')" class="relative w-16 h-16 rounded-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center shadow transition-all active:scale-90">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
               </button>
             </div>
-            <div id="rw-stt-status" class="mt-3 text-xs font-semibold text-slate-500">마이크를 탭하여 단어 발음하기</div>
-            <div id="rw-stt-recognized" class="mt-2 text-xl font-black text-teal-600 min-h-[1.75rem]"></div>
-            <div id="rw-stt-feedback" class="mt-2 text-xs text-slate-500">음성을 듣고 일치 여부를 평가합니다.</div>
+            <div id="rw-stt-status" class="mt-3 text-xs font-semibold text-slate-500">Tap the mic to speak</div>
+            <div id="rw-stt-recognized" class="mt-2 text-2xl font-black text-teal-600 min-h-[2rem] tracking-wider"></div>
+            <div id="rw-stt-feedback" class="mt-2 text-xs text-slate-500">Your voice will be evaluated in real-time.</div>
           </div>
         </div>
         <div class="lg:col-span-7 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
           <div class="flex items-center justify-between">
-            <h3 class="font-bold text-slate-900">✍️ 손으로 따라 쓰기</h3>
-            <button onclick="clearCanvas('consonant-r')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-rose-50 text-rose-600">지우기</button>
+            <h3 class="font-bold text-slate-900">✍️ Trace & Write</h3>
+            <button onclick="clearCanvas('consonant-r')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100">Clear</button>
           </div>
           <div class="relative w-full h-72 sm:h-80 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden canvas-grid">
-            <div id="rw-canvas-guide" class="hangul-font absolute inset-0 flex items-center justify-center text-7xl sm:text-8xl font-black text-slate-300/60 pointer-events-none">가로</div>
+            <div id="rw-canvas-guide" class="hangul-font absolute inset-0 flex items-center justify-center text-7xl sm:text-8xl font-black text-slate-300/60 pointer-events-none select-none">가로</div>
             <canvas id="canvas-consonant-r" class="absolute inset-0 w-full h-full cursor-crosshair"></canvas>
           </div>
           <div class="flex items-center justify-between pt-2">
             <div class="flex gap-2">
-              <button onclick="changePenColor('consonant-r', '#1e293b')" class="w-6 h-6 rounded-full bg-slate-900"></button>
-              <button onclick="changePenColor('consonant-r', '#0d9488')" class="w-6 h-6 rounded-full bg-teal-600"></button>
+              <button onclick="changePenColor('consonant-r', '#1e293b')" class="w-6 h-6 rounded-full bg-slate-900 border-2 border-transparent hover:border-slate-300"></button>
+              <button onclick="changePenColor('consonant-r', '#0d9488')" class="w-6 h-6 rounded-full bg-teal-600 border-2 border-transparent hover:border-slate-300"></button>
             </div>
             <div class="flex gap-2">
-              <button onclick="prevWord('consonant-r')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg border border-slate-200">◀ 이전</button>
-              <button onclick="nextWord('consonant-r')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-slate-900 text-white">다음 ▶</button>
+              <button onclick="prevWord('consonant-r')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg border border-slate-200 hover:bg-slate-50">◀ Prev</button>
+              <button onclick="nextWord('consonant-r')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-slate-900 text-white hover:bg-slate-800">Next ▶</button>
             </div>
           </div>
         </div>
@@ -521,11 +519,14 @@
   </main>
 
   <footer class="mt-auto border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-500">
-    <p>한글 배움터 (Hangul Master) • Speech Recognition & Synthesis Powered</p>
+    <p>Hangul Master • Speech Recognition & Synthesis Powered</p>
   </footer>
 
   <script>
-    /* Vocabulary Data Definitions */
+    /* Global Error Catching for Speech Recognition */
+    let activeRecognition = null;
+
+    /* Vocabulary Data Definitions (Fully Translated to English) */
     const VOWELS_DATA = [
       { char: "ㅏ", roman: "[a]", desc: "Like 'a' in 'father'", sample: "아" },
       { char: "ㅑ", roman: "[ya]", desc: "Like 'ya' in 'yacht'", sample: "야" },
@@ -540,15 +541,15 @@
     ];
 
     const VOWEL_WORDS_DATA = [
-      { hangul: "오", roman: "[o]", english: "Five (5)", desc: "숫자 오" },
-      { hangul: "이", roman: "[i]", english: "Two (2) / Teeth", desc: "이 두 개" },
-      { hangul: "아이", roman: "[a-i]", english: "Child", desc: "귀여운 아이" },
-      { hangul: "오이", roman: "[o-i]", english: "Cucumber", desc: "초록색 오이" },
-      { hangul: "우유", roman: "[u-yu]", english: "Milk", desc: "신선한 우유" },
-      { hangul: "아우", roman: "[a-u]", english: "Younger sibling", desc: "사랑하는 아우" },
-      { hangul: "여우", roman: "[yeo-u]", english: "Fox", desc: "영리한 여우" },
-      { hangul: "아야야", roman: "[a-ya-ya]", english: "Ouch!", desc: "아야야! 아파요" },
-      { hangul: "요요", roman: "[yo-yo]", english: "Yo-yo", desc: "재미있는 요요" }
+      { hangul: "오", roman: "[o]", english: "Five (5)", desc: "Number five" },
+      { hangul: "이", roman: "[i]", english: "Two (2) / Teeth", desc: "Two teeth" },
+      { hangul: "아이", roman: "[a-i]", english: "Child", desc: "Cute child" },
+      { hangul: "오이", roman: "[o-i]", english: "Cucumber", desc: "Green cucumber" },
+      { hangul: "우유", roman: "[u-yu]", english: "Milk", desc: "Fresh milk" },
+      { hangul: "아우", roman: "[a-u]", english: "Younger sibling", desc: "Beloved younger sibling" },
+      { hangul: "여우", roman: "[yeo-u]", english: "Fox", desc: "Smart fox" },
+      { hangul: "아야야", roman: "[a-ya-ya]", english: "Ouch!", desc: "Ouch! It hurts" },
+      { hangul: "요요", roman: "[yo-yo]", english: "Yo-yo", desc: "Fun yo-yo" }
     ];
 
     const CONSONANTS_DATA = [
@@ -569,49 +570,49 @@
     ];
 
     const GIYEOK_WORDS_DATA = [
-      { hangul: "구", roman: "[gu]", english: "Nine (9)", desc: "숫자 구" },
-      { hangul: "고기", roman: "[go-gi]", english: "Meat", desc: "맛있는 고기" },
-      { hangul: "기구", roman: "[gi-gu]", english: "Apparatus", desc: "운동 기구" },
-      { hangul: "거기", roman: "[geo-gi]", english: "There", desc: "거기 어디예요?" },
-      { hangul: "구이", roman: "[gu-i]", english: "Grilled dish", desc: "생선 구이" },
-      { hangul: "아가", roman: "[a-ga]", english: "Baby", desc: "예쁜 아가" },
-      { hangul: "가구", roman: "[ga-gu]", english: "Furniture", desc: "방 안의 가구" },
-      { hangul: "가요", roman: "[ga-yo]", english: "K-Pop", desc: "신나는 가요" },
-      { hangul: "야구", roman: "[ya-gu]", english: "Baseball", desc: "재미있는 야구" }
+      { hangul: "구", roman: "[gu]", english: "Nine (9)", desc: "Number nine" },
+      { hangul: "고기", roman: "[go-gi]", english: "Meat", desc: "Delicious meat" },
+      { hangul: "기구", roman: "[gi-gu]", english: "Apparatus", desc: "Exercise equipment" },
+      { hangul: "거기", roman: "[geo-gi]", english: "There", desc: "Where is that?" },
+      { hangul: "구이", roman: "[gu-i]", english: "Grilled dish", desc: "Grilled fish" },
+      { hangul: "아가", roman: "[a-ga]", english: "Baby", desc: "Pretty baby" },
+      { hangul: "가구", roman: "[ga-gu]", english: "Furniture", desc: "Furniture in the room" },
+      { hangul: "가요", roman: "[ga-yo]", english: "K-Pop", desc: "Exciting K-pop" },
+      { hangul: "야구", roman: "[ya-gu]", english: "Baseball", desc: "Fun baseball" }
     ];
 
     const NIEUN_WORDS_DATA = [
-      { hangul: "나", roman: "[na]", english: "I / Me", desc: "나는 학생입니다" },
-      { hangul: "너", roman: "[neo]", english: "You", desc: "너는 내 친구" },
-      { hangul: "누나", roman: "[nu-na]", english: "Older Sister", desc: "친절한 누나" },
-      { hangul: "나이", roman: "[na-i]", english: "Age", desc: "나이가 몇 살?" },
-      { hangul: "누구", roman: "[nu-gu]", english: "Who", desc: "누구세요?" },
-      { hangul: "나누기", roman: "[na-nu-gi]", english: "Division / Sharing", desc: "사이좋게 나누기" },
-      { hangul: "오누이", roman: "[o-nu-i]", english: "Siblings", desc: "다정한 오누이" }
+      { hangul: "나", roman: "[na]", english: "I / Me", desc: "I am a student" },
+      { hangul: "너", roman: "[neo]", english: "You", desc: "You are my friend" },
+      { hangul: "누나", roman: "[nu-na]", english: "Older Sister", desc: "Kind older sister" },
+      { hangul: "나이", roman: "[na-i]", english: "Age", desc: "How old are you?" },
+      { hangul: "누구", roman: "[nu-gu]", english: "Who", desc: "Who is it?" },
+      { hangul: "나누기", roman: "[na-nu-gi]", english: "Division / Sharing", desc: "Sharing peacefully" },
+      { hangul: "오누이", roman: "[o-nu-i]", english: "Siblings", desc: "Affectionate siblings" }
     ];
 
     const DIGEUT_WORDS_DATA = [
-      { hangul: "더디다", roman: "[deo-di-da]", english: "Slow", desc: "걸음이 더디다" },
-      { hangul: "두다", roman: "[du-da]", english: "To put", desc: "책상 위에 두다" },
-      { hangul: "도구", roman: "[do-gu]", english: "Tool", desc: "유용한 도구" },
-      { hangul: "두유", roman: "[du-yu]", english: "Soy milk", desc: "건강한 두유" },
-      { hangul: "구두", roman: "[gu-du]", english: "Dress shoes", desc: "예쁜 구두" },
-      { hangul: "기도", roman: "[gi-do]", english: "Prayer", desc: "마음 담은 기도" },
-      { hangul: "오다", roman: "[o-da]", english: "To come", desc: "비가 오다" },
-      { hangul: "기다", roman: "[gi-da]", english: "To crawl", desc: "아기가 기어가다" },
-      { hangul: "가다", roman: "[ga-da]", english: "To go", desc: "학교에 가다" }
+      { hangul: "더디다", roman: "[deo-di-da]", english: "Slow", desc: "Slow steps" },
+      { hangul: "두다", roman: "[du-da]", english: "To put", desc: "Put on the desk" },
+      { hangul: "도구", roman: "[do-gu]", english: "Tool", desc: "Useful tool" },
+      { hangul: "두유", roman: "[du-yu]", english: "Soy milk", desc: "Healthy soy milk" },
+      { hangul: "구두", roman: "[gu-du]", english: "Dress shoes", desc: "Pretty shoes" },
+      { hangul: "기도", roman: "[gi-do]", english: "Prayer", desc: "Earnest prayer" },
+      { hangul: "오다", roman: "[o-da]", english: "To come", desc: "It rains" },
+      { hangul: "기다", roman: "[gi-da]", english: "To crawl", desc: "Baby is crawling" },
+      { hangul: "가다", roman: "[ga-da]", english: "To go", desc: "Go to school" }
     ];
 
     const RIEUL_WORDS_DATA = [
-      { hangul: "가로", roman: "[ga-ro]", english: "Horizontal", desc: "가로와 세로" },
-      { hangul: "거리", roman: "[geo-ri]", english: "Street", desc: "걷고 싶은 거리" },
-      { hangul: "유리", roman: "[yu-ri]", english: "Glass", desc: "투명한 유리창" },
-      { hangul: "고리", roman: "[go-ri]", english: "Ring / Loop", desc: "열쇠 고리" },
-      { hangul: "가루", roman: "[ga-ru]", english: "Powder", desc: "하얀 밀가루" },
-      { hangul: "오리", roman: "[o-ri]", english: "Duck", desc: "호수의 오리" },
-      { hangul: "다리", roman: "[da-ri]", english: "Bridge / Leg", desc: "한강 다리" },
-      { hangul: "우리", roman: "[u-ri]", english: "We / Our", desc: "우리 가족" },
-      { hangul: "요리", roman: "[yo-ri]", english: "Cooking", desc: "맛있는 요리" }
+      { hangul: "가로", roman: "[ga-ro]", english: "Horizontal", desc: "Horizontal and vertical" },
+      { hangul: "거리", roman: "[geo-ri]", english: "Street", desc: "A street you want to walk on" },
+      { hangul: "유리", roman: "[yu-ri]", english: "Glass", desc: "Transparent glass window" },
+      { hangul: "고리", roman: "[go-ri]", english: "Ring / Loop", desc: "Key ring" },
+      { hangul: "가루", roman: "[ga-ru]", english: "Powder", desc: "White flour" },
+      { hangul: "오리", roman: "[o-ri]", english: "Duck", desc: "Duck in the lake" },
+      { hangul: "다리", roman: "[da-ri]", english: "Bridge / Leg", desc: "Han River Bridge" },
+      { hangul: "우리", roman: "[u-ri]", english: "We / Our", desc: "Our family" },
+      { hangul: "요리", roman: "[yo-ri]", english: "Cooking", desc: "Delicious cooking" }
     ];
 
     let currentVowelIndex = 0, currentVowelWordIndex = 0, currentConsonantIndex = 0;
@@ -635,7 +636,7 @@
       setTimeout(() => {
         toast.classList.remove("translate-y-0", "opacity-100");
         toast.classList.add("translate-y-20", "opacity-0");
-      }, 2500);
+      }, 3000);
     }
 
     function speakKorean(text, rate = 0.85) {
@@ -662,20 +663,28 @@
       return rec;
     }
 
+    /* Safe Abort for existing recognition sessions */
+    function abortActiveRecognition() {
+      if (activeRecognition) {
+        try { activeRecognition.abort(); } catch (e) { console.warn(e); }
+        activeRecognition = null;
+      }
+    }
+
     async function playCurrentVowel3Times() {
       if (isPlayingVowel3x) return;
       isPlayingVowel3x = true;
       const cur = VOWELS_DATA[currentVowelIndex];
       const dots = [document.getElementById("vowel-dot-1"), document.getElementById("vowel-dot-2"), document.getElementById("vowel-dot-3")];
       const badge = document.getElementById("vowel-repeat-badge");
-      dots.forEach(d => d.className = "h-2.5 rounded-full bg-slate-200");
+      dots.forEach(d => d.className = "h-2.5 rounded-full bg-slate-200 transition-all");
       for (let i = 0; i < 3; i++) {
-        badge.innerText = `듣는 중 ${i + 1} / 3회`;
-        dots[i].className = "h-2.5 rounded-full bg-brand-500 scale-105";
+        badge.innerText = `Listening ${i + 1} / 3`;
+        dots[i].className = "h-2.5 rounded-full bg-brand-500 scale-105 transition-all";
         await speakKorean(cur.sample, 0.8);
         await new Promise(r => setTimeout(r, 600));
       }
-      badge.innerText = "완료! 따라해보세요 🎉";
+      badge.innerText = "Done! Your turn 🎉";
       isPlayingVowel3x = false;
     }
 
@@ -685,20 +694,23 @@
       const cur = CONSONANTS_DATA[currentConsonantIndex];
       const dots = [document.getElementById("consonant-dot-1"), document.getElementById("consonant-dot-2"), document.getElementById("consonant-dot-3")];
       const badge = document.getElementById("consonant-repeat-badge");
-      dots.forEach(d => d.className = "h-2.5 rounded-full bg-slate-200");
+      dots.forEach(d => d.className = "h-2.5 rounded-full bg-slate-200 transition-all");
       for (let i = 0; i < 3; i++) {
-        badge.innerText = `듣는 중 ${i + 1} / 3회`;
-        dots[i].className = "h-2.5 rounded-full bg-blue-600 scale-105";
+        badge.innerText = `Listening ${i + 1} / 3`;
+        dots[i].className = "h-2.5 rounded-full bg-blue-600 scale-105 transition-all";
         await speakKorean(cur.name, 0.8);
         await new Promise(r => setTimeout(r, 650));
       }
-      badge.innerText = "완료! 따라해보세요 🎉";
+      badge.innerText = "Done! Your turn 🎉";
       isPlayingConsonant3x = false;
     }
 
     function startPronunciationCheck(type) {
+      abortActiveRecognition(); // Prevent "recognition has already started" crash
+
       const rec = getSpeechRecognition();
-      if (!rec) { showToast("음성 인식이 지원되지 않습니다.", "⚠️"); return; }
+      if (!rec) { showToast("Speech recognition is not supported in your browser.", "⚠️"); return; }
+      activeRecognition = rec;
       
       let isMatched = false;
       let expected = "", expectedChar = "", prefix = "", colorClass = "";
@@ -720,56 +732,77 @@
       const feedback = document.getElementById(`${prefix}-feedback-text`);
 
       ring.classList.remove("hidden");
-      status.innerText = "🎤 듣고 있습니다... 여러 번 편하게 말씀해보세요!";
+      status.innerText = "🎤 Listening... Feel free to say it multiple times!";
       liveText.innerText = "";
-      liveText.className = `mt-2 text-2xl font-black ${colorClass} min-h-[2.5rem]`;
-      scoreBadge.innerText = "듣는 중...";
+      liveText.className = `mt-2 text-3xl font-black tracking-widest text-center ${colorClass} min-h-[2.5rem]`;
+      scoreBadge.innerText = "Listening...";
       scoreBadge.className = "inline-block text-xs px-2.5 py-1 rounded-full font-bold bg-blue-100 text-blue-700 animate-pulse mb-2";
+      feedback.innerText = "Keep speaking, the AI is evaluating your voice live.";
 
       rec.onresult = (e) => {
-        let interim = '', final = '';
-        for (let i = e.resultIndex; i < e.results.length; ++i) {
-          if (e.results[i].isFinal) final += e.results[i][0].transcript;
-          else interim += e.results[i][0].transcript;
-        }
-        const currentText = (final + interim).trim();
-        liveText.innerText = currentText;
-        const cleanText = currentText.replace(/\s+/g, '');
-        
-        if (!isMatched && (cleanText.includes(expected) || cleanText.includes(expectedChar))) {
-          isMatched = true;
-          rec.stop();
-          ring.classList.add("hidden");
-          scoreBadge.innerText = "완벽한 발음! 100점 🌟";
-          scoreBadge.className = "inline-block text-xs px-2.5 py-1 rounded-full font-bold bg-emerald-100 text-emerald-700 mb-2";
-          feedback.innerHTML = `<span class="text-emerald-600 font-semibold">참 잘했어요!</span> 올바르게 발음하셨습니다.`;
-          status.innerText = "마이크를 탭하여 다시 측정";
+        try {
+          let interim = '', final = '';
+          const startIndex = e.resultIndex || 0; // Safe fallback
+          
+          for (let i = startIndex; i < e.results.length; ++i) {
+            if (e.results[i] && e.results[i][0]) {
+              if (e.results[i].isFinal) final += e.results[i][0].transcript;
+              else interim += e.results[i][0].transcript;
+            }
+          }
+          
+          const currentText = (final + interim).trim();
+          liveText.innerText = currentText;
+          const cleanText = currentText.replace(/\s+/g, '');
+          
+          if (!isMatched && (cleanText.includes(expected) || cleanText.includes(expectedChar))) {
+            isMatched = true;
+            rec.stop();
+            ring.classList.add("hidden");
+            scoreBadge.innerText = "Perfect pronunciation! 100% 🌟";
+            scoreBadge.className = "inline-block text-xs px-2.5 py-1 rounded-full font-bold bg-emerald-100 text-emerald-700 mb-2";
+            feedback.innerHTML = `<span class="text-emerald-600 font-semibold">Great job!</span> You pronounced it correctly.`;
+            status.innerText = "Tap the mic to try again";
+          }
+        } catch (err) {
+          console.error("Result parsing error:", err);
         }
       };
 
-      rec.onerror = () => {
-        if(isMatched) return;
+      rec.onerror = (e) => {
+        if (e.error === 'aborted') return; // Ignore intentional aborts
+        if (isMatched) return;
         ring.classList.add("hidden");
-        status.innerText = "음성이 감지되지 않았습니다. 다시 탭하세요.";
+        scoreBadge.innerText = "Error";
+        scoreBadge.className = "inline-block text-xs px-2.5 py-1 rounded-full font-bold bg-rose-100 text-rose-700 mb-2";
+        feedback.innerText = `Microphone error: ${e.error}. Please ensure mic permissions are granted.`;
+        status.innerText = "Tap the mic to restart";
+        activeRecognition = null;
       };
       
       rec.onend = () => {
         ring.classList.add("hidden");
+        activeRecognition = null;
         if (!isMatched && liveText.innerText.trim() !== "") {
-          scoreBadge.innerText = "다시 시도 (Try Again)";
+          scoreBadge.innerText = "Try Again";
           scoreBadge.className = "inline-block text-xs px-2.5 py-1 rounded-full font-bold bg-amber-100 text-amber-700 mb-2";
-          feedback.innerHTML = `인식된 소리: <span class="font-bold">'${liveText.innerText}'</span>. 천천히 다시 발음해보세요!`;
-          status.innerText = "마이크를 탭하여 다시 측정";
+          feedback.innerHTML = `Heard: <span class="font-bold">'${liveText.innerText}'</span>. Try saying it again slowly!`;
+          status.innerText = "Tap the mic to try again";
         } else if (!isMatched) {
-          status.innerText = "마이크를 탭하여 말하기 시작";
+          status.innerText = "Tap the mic to start speaking";
+          feedback.innerText = "No speech was detected.";
         }
       };
-      rec.start();
+      
+      try { rec.start(); } catch (err) { console.error("Start error:", err); }
     }
 
     function startWordPronunciationCheck(type) {
+      abortActiveRecognition();
+
       const rec = getSpeechRecognition();
-      if (!rec) return;
+      if (!rec) { showToast("Speech recognition is not supported in your browser.", "⚠️"); return; }
+      activeRecognition = rec;
 
       let word = "", prefix = "", colorClass = "";
       if (type === 'vowel') { word = VOWEL_WORDS_DATA[currentVowelWordIndex].hangul; prefix = "vw"; colorClass = "text-brand-600"; }
@@ -787,57 +820,71 @@
       let isMatched = false;
 
       if(ring) ring.classList.remove("hidden");
-      scoreBadge.innerText = "듣는 중... 🎙️";
+      scoreBadge.innerText = "Listening... 🎙️";
       scoreBadge.className = "text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 animate-pulse";
-      status.innerText = "🎤 듣고 있습니다... 단어를 여러 번 말씀해보세요!";
+      status.innerText = "🎤 Listening... Say the word multiple times!";
       liveText.innerText = "";
-      liveText.className = `mt-2 text-xl font-black ${colorClass} min-h-[1.75rem]`;
+      liveText.className = `mt-2 text-2xl font-black tracking-wider ${colorClass} min-h-[2rem]`;
+      feedback.innerText = "Keep speaking, the AI is evaluating your voice live.";
 
       rec.onresult = (e) => {
-        let interim = '', final = '';
-        for (let i = e.resultIndex; i < e.results.length; ++i) {
-          if (e.results[i].isFinal) final += e.results[i][0].transcript;
-          else interim += e.results[i][0].transcript;
-        }
-        const currentText = (final + interim).trim();
-        liveText.innerText = currentText;
+        try {
+          let interim = '', final = '';
+          const startIndex = e.resultIndex || 0;
+          for (let i = startIndex; i < e.results.length; ++i) {
+            if (e.results[i] && e.results[i][0]) {
+              if (e.results[i].isFinal) final += e.results[i][0].transcript;
+              else interim += e.results[i][0].transcript;
+            }
+          }
+          const currentText = (final + interim).trim();
+          liveText.innerText = currentText;
 
-        const cleanText = currentText.replace(/\s+/g, '');
-        if (!isMatched && cleanText.includes(word)) {
-          isMatched = true;
-          rec.stop();
-          if(ring) ring.classList.add("hidden");
-          scoreBadge.innerText = "발음 통과! (Passed)";
-          scoreBadge.className = "text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700";
-          status.innerText = "마이크를 탭하여 다시 측정";
-          feedback.innerHTML = `<span class="text-emerald-600 font-semibold">정확합니다!</span> [${word}] 단어를 훌륭하게 읽었습니다.`;
-          showToast(`훌륭해요! "${word}" 통과`, "✨");
+          const cleanText = currentText.replace(/\s+/g, '');
+          if (!isMatched && cleanText.includes(word)) {
+            isMatched = true;
+            rec.stop();
+            if(ring) ring.classList.add("hidden");
+            scoreBadge.innerText = "Passed!";
+            scoreBadge.className = "text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700";
+            status.innerText = "Tap the mic to try again";
+            feedback.innerHTML = `<span class="text-emerald-600 font-semibold">Correct!</span> You read the word [${word}] perfectly.`;
+            showToast(`Excellent! "${word}" Passed`, "✨");
+          }
+        } catch (err) {
+          console.error("Word result error:", err);
         }
       };
 
-      rec.onerror = () => {
+      rec.onerror = (e) => {
+        if (e.error === 'aborted') return;
         if(isMatched) return;
         if(ring) ring.classList.add("hidden");
-        scoreBadge.innerText = "인식 실패";
-        scoreBadge.className = "text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-500";
-        status.innerText = "음성이 인식되지 않았습니다. 다시 탭하세요.";
+        scoreBadge.innerText = "Error";
+        scoreBadge.className = "text-[11px] font-semibold px-2 py-0.5 rounded-full bg-rose-200 text-rose-700";
+        status.innerText = "Tap the mic to restart";
+        feedback.innerText = `Microphone error: ${e.error}`;
+        activeRecognition = null;
       };
 
       rec.onend = () => {
         if(ring) ring.classList.add("hidden");
+        activeRecognition = null;
         if (!isMatched && liveText.innerText.trim() !== "") {
-          scoreBadge.innerText = "다시 시도 (Retry)";
+          scoreBadge.innerText = "Retry";
           scoreBadge.className = "text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700";
-          status.innerText = "마이크를 탭하여 다시 측정";
-          feedback.innerHTML = `인식된 소리: <span class="font-bold">'${liveText.innerText}'</span>. 다시 발음해보세요.`;
+          status.innerText = "Tap the mic to try again";
+          feedback.innerHTML = `Heard: <span class="font-bold">'${liveText.innerText}'</span>. Please try speaking again.`;
         } else if (!isMatched) {
-          status.innerText = "마이크를 탭하여 단어 발음하기";
+          status.innerText = "Tap the mic to speak";
+          feedback.innerText = "No speech was detected.";
         }
       };
 
-      rec.start();
+      try { rec.start(); } catch (err) { console.error("Start word error:", err); }
     }
 
+    /* Canvas Drawing Logic */
     function initCanvas(key, canvasId) {
       const canvas = document.getElementById(canvasId);
       if (!canvas) return;
@@ -867,6 +914,7 @@
       canvas.addEventListener('mousedown', startDraw); canvas.addEventListener('mousemove', draw); window.addEventListener('mouseup', stopDraw);
       canvas.addEventListener('touchstart', startDraw, { passive: false }); canvas.addEventListener('touchmove', draw, { passive: false }); window.addEventListener('touchend', stopDraw);
     }
+    
     function clearCanvas(key) { canvases[key].ctx.clearRect(0, 0, canvases[key].el.width, canvases[key].el.height); }
     function changePenColor(key, color) { canvases[key].color = color; }
     function toggleTracingGuide(key) {
@@ -875,6 +923,7 @@
       canvases[key].showGuide = !canvases[key].showGuide; g.style.opacity = canvases[key].showGuide ? "1" : "0";
     }
 
+    /* UI Rendering Methods */
     function renderVowelChips() {
       const container = document.getElementById("vowels-chip-list"); container.innerHTML = "";
       VOWELS_DATA.forEach((item, idx) => {
@@ -888,8 +937,8 @@
       document.getElementById("vowel-big-char").innerText = v.char; document.getElementById("vowel-roman").innerText = v.roman;
       document.getElementById("vowel-desc").innerText = v.desc; document.getElementById("vowel-target-prompt").innerText = `"${v.sample}" (${v.char})`;
       document.getElementById("vowel-live-text").innerText = "";
-      document.getElementById("vowel-score-badge").innerText = "대기 중"; document.getElementById("vowel-score-badge").className = "inline-block text-xs px-2.5 py-1 rounded-full font-bold bg-slate-200 text-slate-600 mb-2";
-      document.getElementById("vowel-feedback-text").innerText = "버튼을 누르고 발음하면 실시간으로 정확도를 판정합니다.";
+      document.getElementById("vowel-score-badge").innerText = "Waiting..."; document.getElementById("vowel-score-badge").className = "inline-block text-xs px-2.5 py-1 rounded-full font-bold bg-slate-200 text-slate-600 mb-2";
+      document.getElementById("vowel-feedback-text").innerText = "Press the button and speak to get real-time feedback.";
       renderVowelChips();
     }
 
@@ -905,10 +954,10 @@
     function selectConsonant(idx) {
       currentConsonantIndex = idx; const c = CONSONANTS_DATA[idx];
       document.getElementById("consonant-big-char").innerText = c.char; document.getElementById("consonant-name").innerText = `${c.name} [${c.roman}]`;
-      document.getElementById("consonant-sound").innerText = `음가: ${c.sound}`; document.getElementById("consonant-target-prompt").innerText = `"${c.name}"`;
+      document.getElementById("consonant-sound").innerText = `Sound: ${c.sound}`; document.getElementById("consonant-target-prompt").innerText = `"${c.name}"`;
       document.getElementById("consonant-live-text").innerText = "";
-      document.getElementById("consonant-score-badge").innerText = "대기 중"; document.getElementById("consonant-score-badge").className = "inline-block text-xs px-2.5 py-1 rounded-full font-bold bg-slate-200 text-slate-600 mb-2";
-      document.getElementById("consonant-feedback-text").innerText = "자음의 이름을 소리내어 맞혀보세요.";
+      document.getElementById("consonant-score-badge").innerText = "Waiting..."; document.getElementById("consonant-score-badge").className = "inline-block text-xs px-2.5 py-1 rounded-full font-bold bg-slate-200 text-slate-600 mb-2";
+      document.getElementById("consonant-feedback-text").innerText = "Say the name of the consonant out loud.";
       renderConsonantsGrid();
     }
 
@@ -916,7 +965,7 @@
       const container = document.getElementById(containerId); if(!container) return; container.innerHTML = "";
       data.forEach((item, idx) => {
         const btn = document.createElement("button");
-        btn.className = `p-2 rounded-xl text-center border transition-all ${idx === currentIndex ? `${borderClass} shadow-sm ring-1 ${ringClass}` : "bg-white border-slate-200"}`;
+        btn.className = `p-2 rounded-xl text-center border transition-all ${idx === currentIndex ? `${borderClass} shadow-sm ring-1 ${ringClass}` : "bg-white border-slate-200 hover:bg-slate-50"}`;
         btn.innerHTML = `<div class="text-[10px] font-bold text-slate-400">#${idx+1}</div><div class="hangul-font font-black text-lg text-slate-800 mt-0.5">${item.hangul}</div><div class="text-[10px] font-semibold text-slate-500 truncate">${item.english}</div>`;
         btn.onclick = () => selectFn(idx); container.appendChild(btn);
       });
@@ -924,17 +973,17 @@
 
     function updateWordUI(idx, data, prefix, canvasKey) {
       const w = data[idx];
-      document.getElementById(`${prefix}-idx-badge`).innerText = `단어 ${idx + 1} / ${data.length}`;
+      document.getElementById(`${prefix}-idx-badge`).innerText = `Word ${idx + 1} / ${data.length}`;
       document.getElementById(`${prefix}-hangul`).innerText = w.hangul;
       document.getElementById(`${prefix}-roman`).innerText = w.roman;
       document.getElementById(`${prefix}-english`).innerText = w.english;
-      const ex = document.getElementById(`${prefix}-example`); if(ex) ex.innerText = `예문: "${w.desc}"`;
+      const ex = document.getElementById(`${prefix}-example`); if(ex) ex.innerText = `Example: "${w.desc}"`;
       document.getElementById(`${prefix}-canvas-guide`).innerText = w.hangul;
       
-      document.getElementById(`${prefix}-stt-score`).innerText = "평가 대기"; document.getElementById(`${prefix}-stt-score`).className = "text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600";
+      document.getElementById(`${prefix}-stt-score`).innerText = "Pending"; document.getElementById(`${prefix}-stt-score`).className = "text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600";
       document.getElementById(`${prefix}-stt-recognized`).innerText = "";
-      document.getElementById(`${prefix}-stt-status`).innerText = "마이크를 탭하여 단어 발음하기";
-      document.getElementById(`${prefix}-stt-feedback`).innerText = "음성을 듣고 일치 여부를 평가합니다.";
+      document.getElementById(`${prefix}-stt-status`).innerText = "Tap the mic to speak";
+      document.getElementById(`${prefix}-stt-feedback`).innerText = "Your voice will be evaluated in real-time.";
       clearCanvas(canvasKey);
     }
 
