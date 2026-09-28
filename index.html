@@ -40,40 +40,51 @@
         linear-gradient(to right, rgba(226, 232, 240, 0.7) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(226, 232, 240, 0.7) 1px, transparent 1px);
     }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    /* Smooth slim scrollbar for tab navigation */
+    .tab-scroll-container::-webkit-scrollbar { height: 5px; }
+    .tab-scroll-container::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 9999px; }
+    .tab-scroll-container::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    .tab-scroll-container::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
   </style>
 </head>
 <body class="min-h-screen text-slate-800 flex flex-col antialiased selection:bg-brand-100 selection:text-brand-700">
 
   <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-      <div class="flex items-center space-x-3 cursor-pointer" onclick="switchMainTab('vowels')">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-rose-400 flex items-center justify-center text-white text-xl font-bold shadow-md shadow-brand-500/20 hangul-font">
-          한
-        </div>
-        <div>
-          <h1 class="text-lg font-bold leading-tight flex items-center gap-2">
-            Hangul Master <span class="text-xs bg-brand-50 text-brand-600 px-2 py-0.5 rounded-full border border-brand-200 font-medium">Learning Center</span>
-          </h1>
-          <p class="text-xs text-slate-500">Listen 3x • Speak & Test • Trace & Write</p>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 space-y-2.5">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchMainTab('vowels')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-rose-400 flex items-center justify-center text-white text-xl font-bold shadow-md shadow-brand-500/20 hangul-font">
+            한
+          </div>
+          <div>
+            <h1 class="text-lg font-bold leading-tight flex items-center gap-2">
+              Hangul Master <span class="text-xs bg-brand-50 text-brand-600 px-2 py-0.5 rounded-full border border-brand-200 font-medium">Learning Center</span>
+            </h1>
+            <p class="text-xs text-slate-500">Listen 3x • Speak & Test • Trace & Write</p>
+          </div>
         </div>
       </div>
 
-      <div class="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl overflow-x-auto max-w-full no-scrollbar">
-        <button id="nav-btn-vowels" onclick="switchMainTab('vowels')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all bg-white text-brand-600 shadow-sm whitespace-nowrap">Vowels</button>
-        <button id="nav-btn-vowel-words" onclick="switchMainTab('vowel-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">Vowel Words</button>
-        <button id="nav-btn-consonants" onclick="switchMainTab('consonants')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">Consonants</button>
-        <button id="nav-btn-consonant-g-words" onclick="switchMainTab('consonant-g-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㄱ' Words</button>
-        <button id="nav-btn-consonant-n-words" onclick="switchMainTab('consonant-n-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㄴ' Words</button>
-        <button id="nav-btn-consonant-d-words" onclick="switchMainTab('consonant-d-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㄷ' Words</button>
-        <button id="nav-btn-consonant-r-words" onclick="switchMainTab('consonant-r-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㄹ' Words</button>
-        <button id="nav-btn-consonant-m-words" onclick="switchMainTab('consonant-m-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅁ' Words</button>
-        <button id="nav-btn-consonant-b-words" onclick="switchMainTab('consonant-b-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅂ' Words</button>
-        <button id="nav-btn-consonant-s-words" onclick="switchMainTab('consonant-s-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅅ' Words</button>
-        <button id="nav-btn-consonant-ng-words" onclick="switchMainTab('consonant-ng-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅇ' Words</button>
-        <button id="nav-btn-consonant-j-words" onclick="switchMainTab('consonant-j-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅈ' Words</button>
-        <button id="nav-btn-consonant-ch-words" onclick="switchMainTab('consonant-ch-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅊ' Words</button>
+      <!-- Navigation Tabs Container: Wraps into 2 rows on medium/large screens, scrollable on very narrow screens -->
+      <div class="tab-scroll-container overflow-x-auto pb-1 max-w-full">
+        <div class="flex flex-wrap items-center gap-1.5 p-1.5 bg-slate-100/90 rounded-2xl min-w-max sm:min-w-0">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-2 py-1 select-none">Basics</span>
+          <button id="nav-btn-vowels" onclick="switchMainTab('vowels')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all bg-white text-brand-600 shadow-sm whitespace-nowrap">Vowels</button>
+          <button id="nav-btn-vowel-words" onclick="switchMainTab('vowel-words')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">Vowel Words</button>
+          <button id="nav-btn-consonants" onclick="switchMainTab('consonants')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">Consonants</button>
+          
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-2 py-1 select-none border-l border-slate-300 ml-1">Consonant Words</span>
+          <button id="nav-btn-consonant-g-words" onclick="switchMainTab('consonant-g-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㄱ' Words</button>
+          <button id="nav-btn-consonant-n-words" onclick="switchMainTab('consonant-n-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㄴ' Words</button>
+          <button id="nav-btn-consonant-d-words" onclick="switchMainTab('consonant-d-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㄷ' Words</button>
+          <button id="nav-btn-consonant-r-words" onclick="switchMainTab('consonant-r-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㄹ' Words</button>
+          <button id="nav-btn-consonant-m-words" onclick="switchMainTab('consonant-m-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅁ' Words</button>
+          <button id="nav-btn-consonant-b-words" onclick="switchMainTab('consonant-b-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅂ' Words</button>
+          <button id="nav-btn-consonant-s-words" onclick="switchMainTab('consonant-s-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅅ' Words</button>
+          <button id="nav-btn-consonant-ng-words" onclick="switchMainTab('consonant-ng-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅇ' Words</button>
+          <button id="nav-btn-consonant-j-words" onclick="switchMainTab('consonant-j-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅈ' Words</button>
+          <button id="nav-btn-consonant-ch-words" onclick="switchMainTab('consonant-ch-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅊ' Words</button>
+        </div>
       </div>
     </div>
   </header>
