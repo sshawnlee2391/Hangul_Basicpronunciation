@@ -65,7 +65,7 @@
         </div>
       </div>
 
-      <!-- Navigation Tabs Container: Wraps into 2 rows on medium/large screens, scrollable on very narrow screens -->
+      <!-- Navigation Tabs Container: Wraps into 2 rows on medium/large screens, scrollable on narrow screens -->
       <div class="tab-scroll-container overflow-x-auto pb-1 max-w-full">
         <div class="flex flex-wrap items-center gap-1.5 p-1.5 bg-slate-100/90 rounded-2xl min-w-max sm:min-w-0">
           <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-2 py-1 select-none">Basics</span>
@@ -86,6 +86,8 @@
           <button id="nav-btn-consonant-ch-words" onclick="switchMainTab('consonant-ch-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅊ' Words</button>
           <button id="nav-btn-consonant-k-words" onclick="switchMainTab('consonant-k-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅋ' Words</button>
           <button id="nav-btn-consonant-t-words" onclick="switchMainTab('consonant-t-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅌ' Words</button>
+          <button id="nav-btn-consonant-p-words" onclick="switchMainTab('consonant-p-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅍ' Words</button>
+          <button id="nav-btn-consonant-h-words" onclick="switchMainTab('consonant-h-words')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">'ㅎ' Words</button>
         </div>
       </div>
     </div>
@@ -1033,6 +1035,132 @@
         </div>
       </div>
     </section>
+
+    <!-- Section: Consonant ㅍ Words -->
+    <section id="section-consonant-p-words" class="hidden space-y-6">
+      <div class="bg-gradient-to-r from-fuchsia-500/10 via-pink-500/10 to-rose-500/10 border border-fuchsia-200/80 p-5 rounded-2xl flex items-center justify-between">
+        <div>
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase text-fuchsia-700 bg-white px-2.5 py-1 rounded-full border border-fuchsia-200">Step 16 • 'ㅍ' Words</span>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Master 6 Consonant 'ㅍ' Words</h2>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2" id="p-words-list-ribbon"></div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
+          <div>
+            <span id="pw-idx-badge" class="text-xs bg-fuchsia-50 text-fuchsia-700 font-bold px-2.5 py-1 rounded-lg border border-fuchsia-200">Word 1 / 6</span>
+            <div class="text-center my-6">
+              <div id="pw-hangul" class="hangul-font text-6xl font-black text-slate-900 tracking-tight">파리</div>
+              <div id="pw-roman" class="text-lg font-semibold text-slate-500 mt-1">[pa-ri]</div>
+              <div id="pw-english" class="text-xl font-extrabold text-fuchsia-600 mt-2">Fly / Paris</div>
+              <div id="pw-example" class="text-xs text-slate-500 mt-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">"Buzzing fly"</div>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="speakCurrentWord('consonant-p')" class="flex-1 py-3 bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-bold rounded-xl text-sm transition-all active:scale-95">Listen</button>
+              <button onclick="speakCurrentWordSlow('consonant-p')" class="px-3.5 py-3 bg-slate-100 text-slate-700 font-semibold rounded-xl text-xs hover:bg-slate-200">🐢 Slow</button>
+            </div>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col items-center text-center">
+            <div class="flex items-center justify-between w-full mb-4">
+              <span class="text-xs font-bold text-slate-700">Speak it out loud</span>
+              <span id="pw-stt-score" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">Pending</span>
+            </div>
+            <div class="relative">
+              <div id="pw-mic-ring" class="hidden absolute -inset-3 rounded-full bg-fuchsia-500/20 mic-pulse"></div>
+              <button id="pw-mic-btn" onclick="startWordPronunciationCheck('consonant-p')" class="relative w-16 h-16 rounded-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center shadow transition-all active:scale-90">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+              </button>
+            </div>
+            <div id="pw-stt-status" class="mt-3 text-xs font-semibold text-slate-500">Tap the mic to speak</div>
+            <div id="pw-stt-recognized" class="mt-2 text-2xl font-black text-fuchsia-600 min-h-[2rem] tracking-wider"></div>
+            <div id="pw-stt-feedback" class="mt-2 text-xs text-slate-500">Your voice will be evaluated in real-time.</div>
+          </div>
+        </div>
+        <div class="lg:col-span-7 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-slate-900">✍️ Trace & Write</h3>
+            <button onclick="clearCanvas('consonant-p')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100">Clear</button>
+          </div>
+          <div class="relative w-full h-72 sm:h-80 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden canvas-grid">
+            <div id="pw-canvas-guide" class="hangul-font absolute inset-0 flex items-center justify-center text-7xl sm:text-8xl font-black text-slate-300/60 pointer-events-none select-none">파리</div>
+            <canvas id="canvas-consonant-p" class="absolute inset-0 w-full h-full cursor-crosshair"></canvas>
+          </div>
+          <div class="flex items-center justify-between pt-2">
+            <div class="flex gap-2">
+              <button onclick="changePenColor('consonant-p', '#1e293b')" class="w-6 h-6 rounded-full bg-slate-900 border-2 border-transparent hover:border-slate-300"></button>
+              <button onclick="changePenColor('consonant-p', '#c026d3')" class="w-6 h-6 rounded-full bg-fuchsia-600 border-2 border-transparent hover:border-slate-300"></button>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="prevWord('consonant-p')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg border border-slate-200 hover:bg-slate-50">◀ Prev</button>
+              <button onclick="nextWord('consonant-p')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-slate-900 text-white hover:bg-slate-800">Next ▶</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Consonant ㅎ Words -->
+    <section id="section-consonant-h-words" class="hidden space-y-6">
+      <div class="bg-gradient-to-r from-red-500/10 via-orange-500/10 to-amber-500/10 border border-red-200/80 p-5 rounded-2xl flex items-center justify-between">
+        <div>
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase text-red-700 bg-white px-2.5 py-1 rounded-full border border-red-200">Step 17 • 'ㅎ' Words</span>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Master 6 Consonant 'ㅎ' Words</h2>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2" id="h-words-list-ribbon"></div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
+          <div>
+            <span id="hw-idx-badge" class="text-xs bg-red-50 text-red-700 font-bold px-2.5 py-1 rounded-lg border border-red-200">Word 1 / 6</span>
+            <div class="text-center my-6">
+              <div id="hw-hangul" class="hangul-font text-6xl font-black text-slate-900 tracking-tight">하마</div>
+              <div id="hw-roman" class="text-lg font-semibold text-slate-500 mt-1">[ha-ma]</div>
+              <div id="hw-english" class="text-xl font-extrabold text-red-600 mt-2">Hippo</div>
+              <div id="hw-example" class="text-xs text-slate-500 mt-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">"Big yawning hippo"</div>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="speakCurrentWord('consonant-h')" class="flex-1 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-sm transition-all active:scale-95">Listen</button>
+              <button onclick="speakCurrentWordSlow('consonant-h')" class="px-3.5 py-3 bg-slate-100 text-slate-700 font-semibold rounded-xl text-xs hover:bg-slate-200">🐢 Slow</button>
+            </div>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col items-center text-center">
+            <div class="flex items-center justify-between w-full mb-4">
+              <span class="text-xs font-bold text-slate-700">Speak it out loud</span>
+              <span id="hw-stt-score" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">Pending</span>
+            </div>
+            <div class="relative">
+              <div id="hw-mic-ring" class="hidden absolute -inset-3 rounded-full bg-red-500/20 mic-pulse"></div>
+              <button id="hw-mic-btn" onclick="startWordPronunciationCheck('consonant-h')" class="relative w-16 h-16 rounded-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center shadow transition-all active:scale-90">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+              </button>
+            </div>
+            <div id="hw-stt-status" class="mt-3 text-xs font-semibold text-slate-500">Tap the mic to speak</div>
+            <div id="hw-stt-recognized" class="mt-2 text-2xl font-black text-red-600 min-h-[2rem] tracking-wider"></div>
+            <div id="hw-stt-feedback" class="mt-2 text-xs text-slate-500">Your voice will be evaluated in real-time.</div>
+          </div>
+        </div>
+        <div class="lg:col-span-7 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-slate-900">✍️ Trace & Write</h3>
+            <button onclick="clearCanvas('consonant-h')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100">Clear</button>
+          </div>
+          <div class="relative w-full h-72 sm:h-80 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden canvas-grid">
+            <div id="hw-canvas-guide" class="hangul-font absolute inset-0 flex items-center justify-center text-7xl sm:text-8xl font-black text-slate-300/60 pointer-events-none select-none">하마</div>
+            <canvas id="canvas-consonant-h" class="absolute inset-0 w-full h-full cursor-crosshair"></canvas>
+          </div>
+          <div class="flex items-center justify-between pt-2">
+            <div class="flex gap-2">
+              <button onclick="changePenColor('consonant-h', '#1e293b')" class="w-6 h-6 rounded-full bg-slate-900 border-2 border-transparent hover:border-slate-300"></button>
+              <button onclick="changePenColor('consonant-h', '#dc2626')" class="w-6 h-6 rounded-full bg-red-600 border-2 border-transparent hover:border-slate-300"></button>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="prevWord('consonant-h')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg border border-slate-200 hover:bg-slate-50">◀ Prev</button>
+              <button onclick="nextWord('consonant-h')" class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-slate-900 text-white hover:bg-slate-800">Next ▶</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="mt-auto border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-500">
@@ -1205,11 +1333,30 @@
       { hangul: "타다", roman: "[ta-da]", english: "To ride / To burn", desc: "Ride a bus / The fire burns" }
     ];
 
+    const PIEUP_WORDS_DATA = [
+      { hangul: "파리", roman: "[pa-ri]", english: "Fly / Paris", desc: "Buzzing fly" },
+      { hangul: "포도", roman: "[po-do]", english: "Grape", desc: "Sweet purple grapes" },
+      { hangul: "피리", roman: "[pi-ri]", english: "Flute / Pipe", desc: "Playing the flute" },
+      { hangul: "코피", roman: "[ko-pi]", english: "Nosebleed", desc: "Nosebleed from fatigue" },
+      { hangul: "피아노", roman: "[pi-a-no]", english: "Piano", desc: "Playing the grand piano" },
+      { hangul: "아프다", roman: "[a-peu-da]", english: "To hurt / Sick", desc: "It hurts / Feeling sick" }
+    ];
+
+    const HIEUT_WORDS_DATA = [
+      { hangul: "하마", roman: "[ha-ma]", english: "Hippo", desc: "Big yawning hippo" },
+      { hangul: "호두", roman: "[ho-du]", english: "Walnut", desc: "Crunchy healthy walnut" },
+      { hangul: "하하", roman: "[ha-ha]", english: "Haha (Laughter)", desc: "Laughing haha cheerfully" },
+      { hangul: "휴지", roman: "[hyu-ji]", english: "Tissue / Paper", desc: "Wiping clean with tissue" },
+      { hangul: "허리띠", roman: "[heo-ri-tti]", english: "Belt", desc: "Fastening a waist belt" },
+      { hangul: "호수", roman: "[ho-su]", english: "Lake", desc: "Calm and peaceful lake" }
+    ];
+
     let currentVowelIndex = 0, currentVowelWordIndex = 0, currentConsonantIndex = 0;
     let currentGiyeokWordIndex = 0, currentNieunWordIndex = 0, currentDigeutWordIndex = 0, currentRieulWordIndex = 0;
     let currentMieumWordIndex = 0, currentBieupWordIndex = 0, currentSiotWordIndex = 0;
     let currentIeungWordIndex = 0, currentJieutWordIndex = 0, currentChieutWordIndex = 0;
     let currentKieukWordIndex = 0, currentTieutWordIndex = 0;
+    let currentPieupWordIndex = 0, currentHieutWordIndex = 0;
     let isPlayingVowel3x = false, isPlayingConsonant3x = false;
 
     const canvases = {
@@ -1225,7 +1372,9 @@
       'consonant-j': { el: null, ctx: null, drawing: false, color: '#1e293b', showGuide: true },
       'consonant-ch': { el: null, ctx: null, drawing: false, color: '#1e293b', showGuide: true },
       'consonant-k': { el: null, ctx: null, drawing: false, color: '#1e293b', showGuide: true },
-      'consonant-t': { el: null, ctx: null, drawing: false, color: '#1e293b', showGuide: true }
+      'consonant-t': { el: null, ctx: null, drawing: false, color: '#1e293b', showGuide: true },
+      'consonant-p': { el: null, ctx: null, drawing: false, color: '#1e293b', showGuide: true },
+      'consonant-h': { el: null, ctx: null, drawing: false, color: '#1e293b', showGuide: true }
     };
 
     function showToast(msg, icon = "📢") {
@@ -1416,6 +1565,8 @@
       else if (type === 'consonant-ch') { word = CHIEUT_WORDS_DATA[currentChieutWordIndex].hangul; prefix = "chw"; colorClass = "text-orange-600"; }
       else if (type === 'consonant-k') { word = KIEUK_WORDS_DATA[currentKieukWordIndex].hangul; prefix = "kw"; colorClass = "text-lime-600"; }
       else if (type === 'consonant-t') { word = TIEUT_WORDS_DATA[currentTieutWordIndex].hangul; prefix = "tw"; colorClass = "text-cyan-600"; }
+      else if (type === 'consonant-p') { word = PIEUP_WORDS_DATA[currentPieupWordIndex].hangul; prefix = "pw"; colorClass = "text-fuchsia-600"; }
+      else if (type === 'consonant-h') { word = HIEUT_WORDS_DATA[currentHieutWordIndex].hangul; prefix = "hw"; colorClass = "text-red-600"; }
 
       const ring = document.getElementById(`${prefix}-mic-ring`);
       const status = document.getElementById(`${prefix}-stt-status`);
@@ -1584,7 +1735,9 @@
         'consonant-j':'jw-canvas-guide',
         'consonant-ch':'chw-canvas-guide',
         'consonant-k':'kw-canvas-guide',
-        'consonant-t':'tw-canvas-guide'
+        'consonant-t':'tw-canvas-guide',
+        'consonant-p':'pw-canvas-guide',
+        'consonant-h':'hw-canvas-guide'
       }[key];
       const g = document.getElementById(gId);
       if(!g) return;
@@ -1668,6 +1821,8 @@
     function selectChieutWord(idx) { currentChieutWordIndex = idx; updateWordUI(idx, CHIEUT_WORDS_DATA, 'chw', 'consonant-ch'); renderWordRibbon('ch-words-list-ribbon', CHIEUT_WORDS_DATA, currentChieutWordIndex, selectChieutWord, 'bg-orange-50 border-orange-500', 'ring-orange-500'); }
     function selectKieukWord(idx) { currentKieukWordIndex = idx; updateWordUI(idx, KIEUK_WORDS_DATA, 'kw', 'consonant-k'); renderWordRibbon('k-words-list-ribbon', KIEUK_WORDS_DATA, currentKieukWordIndex, selectKieukWord, 'bg-lime-50 border-lime-500', 'ring-lime-500'); }
     function selectTieutWord(idx) { currentTieutWordIndex = idx; updateWordUI(idx, TIEUT_WORDS_DATA, 'tw', 'consonant-t'); renderWordRibbon('t-words-list-ribbon', TIEUT_WORDS_DATA, currentTieutWordIndex, selectTieutWord, 'bg-cyan-50 border-cyan-500', 'ring-cyan-500'); }
+    function selectPieupWord(idx) { currentPieupWordIndex = idx; updateWordUI(idx, PIEUP_WORDS_DATA, 'pw', 'consonant-p'); renderWordRibbon('p-words-list-ribbon', PIEUP_WORDS_DATA, currentPieupWordIndex, selectPieupWord, 'bg-fuchsia-50 border-fuchsia-500', 'ring-fuchsia-500'); }
+    function selectHieutWord(idx) { currentHieutWordIndex = idx; updateWordUI(idx, HIEUT_WORDS_DATA, 'hw', 'consonant-h'); renderWordRibbon('h-words-list-ribbon', HIEUT_WORDS_DATA, currentHieutWordIndex, selectHieutWord, 'bg-red-50 border-red-500', 'ring-red-500'); }
 
     function prevWord(type) {
       if(type==='vowel') selectVowelWord((currentVowelWordIndex - 1 + VOWEL_WORDS_DATA.length) % VOWEL_WORDS_DATA.length);
@@ -1683,6 +1838,8 @@
       else if(type==='consonant-ch') selectChieutWord((currentChieutWordIndex - 1 + CHIEUT_WORDS_DATA.length) % CHIEUT_WORDS_DATA.length);
       else if(type==='consonant-k') selectKieukWord((currentKieukWordIndex - 1 + KIEUK_WORDS_DATA.length) % KIEUK_WORDS_DATA.length);
       else if(type==='consonant-t') selectTieutWord((currentTieutWordIndex - 1 + TIEUT_WORDS_DATA.length) % TIEUT_WORDS_DATA.length);
+      else if(type==='consonant-p') selectPieupWord((currentPieupWordIndex - 1 + PIEUP_WORDS_DATA.length) % PIEUP_WORDS_DATA.length);
+      else if(type==='consonant-h') selectHieutWord((currentHieutWordIndex - 1 + HIEUT_WORDS_DATA.length) % HIEUT_WORDS_DATA.length);
     }
     function nextWord(type) {
       if(type==='vowel') selectVowelWord((currentVowelWordIndex + 1) % VOWEL_WORDS_DATA.length);
@@ -1698,6 +1855,8 @@
       else if(type==='consonant-ch') selectChieutWord((currentChieutWordIndex + 1) % CHIEUT_WORDS_DATA.length);
       else if(type==='consonant-k') selectKieukWord((currentKieukWordIndex + 1) % KIEUK_WORDS_DATA.length);
       else if(type==='consonant-t') selectTieutWord((currentTieutWordIndex + 1) % TIEUT_WORDS_DATA.length);
+      else if(type==='consonant-p') selectPieupWord((currentPieupWordIndex + 1) % PIEUP_WORDS_DATA.length);
+      else if(type==='consonant-h') selectHieutWord((currentHieutWordIndex + 1) % HIEUT_WORDS_DATA.length);
     }
 
     function speakCurrentWord(type) {
@@ -1714,6 +1873,8 @@
       else if(type==='consonant-ch') speakKorean(CHIEUT_WORDS_DATA[currentChieutWordIndex].hangul);
       else if(type==='consonant-k') speakKorean(KIEUK_WORDS_DATA[currentKieukWordIndex].hangul);
       else if(type==='consonant-t') speakKorean(TIEUT_WORDS_DATA[currentTieutWordIndex].hangul);
+      else if(type==='consonant-p') speakKorean(PIEUP_WORDS_DATA[currentPieupWordIndex].hangul);
+      else if(type==='consonant-h') speakKorean(HIEUT_WORDS_DATA[currentHieutWordIndex].hangul);
     }
     function speakCurrentWordSlow(type) {
       if(type==='vowel') speakKorean(VOWEL_WORDS_DATA[currentVowelWordIndex].hangul, 0.55);
@@ -1729,6 +1890,8 @@
       else if(type==='consonant-ch') speakKorean(CHIEUT_WORDS_DATA[currentChieutWordIndex].hangul, 0.55);
       else if(type==='consonant-k') speakKorean(KIEUK_WORDS_DATA[currentKieukWordIndex].hangul, 0.55);
       else if(type==='consonant-t') speakKorean(TIEUT_WORDS_DATA[currentTieutWordIndex].hangul, 0.55);
+      else if(type==='consonant-p') speakKorean(PIEUP_WORDS_DATA[currentPieupWordIndex].hangul, 0.55);
+      else if(type==='consonant-h') speakKorean(HIEUT_WORDS_DATA[currentHieutWordIndex].hangul, 0.55);
     }
 
     function switchMainTab(tabKey) {
@@ -1736,7 +1899,7 @@
         'vowels', 'vowel-words', 'consonants', 
         'consonant-g-words', 'consonant-n-words', 'consonant-d-words', 'consonant-r-words',
         'consonant-m-words', 'consonant-b-words', 'consonant-s-words', 'consonant-ng-words', 'consonant-j-words', 'consonant-ch-words',
-        'consonant-k-words', 'consonant-t-words'
+        'consonant-k-words', 'consonant-t-words', 'consonant-p-words', 'consonant-h-words'
       ];
       allTabs.forEach(t => {
         const sec = document.getElementById(`section-${t}`), btn = document.getElementById(`nav-btn-${t}`);
@@ -1759,6 +1922,7 @@
       selectMieumWord(0); selectBieupWord(0); selectSiotWord(0);
       selectIeungWord(0); selectJieutWord(0); selectChieutWord(0);
       selectKieukWord(0); selectTieutWord(0);
+      selectPieupWord(0); selectHieutWord(0);
       
       initCanvas('vowel', 'canvas-vowel'); 
       initCanvas('consonant-g', 'canvas-consonant-g');
@@ -1773,6 +1937,8 @@
       initCanvas('consonant-ch', 'canvas-consonant-ch');
       initCanvas('consonant-k', 'canvas-consonant-k');
       initCanvas('consonant-t', 'canvas-consonant-t');
+      initCanvas('consonant-p', 'canvas-consonant-p');
+      initCanvas('consonant-h', 'canvas-consonant-h');
 
       if ('speechSynthesis' in window) window.speechSynthesis.getVoices();
     };
